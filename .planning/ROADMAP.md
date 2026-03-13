@@ -34,7 +34,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. The CV download button on the existing site works correctly on the GitHub Pages production URL (basePath applied)
   3. The loading screen transitions smoothly into the hero section — no jarring jumps or timing gaps
   4. All scroll-driven animations in the existing hero section use measured heights, not hardcoded magic numbers
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 01-01-PLAN.md — Restore files, fix "use client" directives, remove basePath/URL legacy
+- [ ] 01-02-PLAN.md — Rewrite LoadingScreen timing/animation, extract HeroSection scroll constants
 
 ### Phase 2: i18n Foundation + Lab Aesthetic
 **Goal**: The app is restructured to bilingual routing and has the visual identity system that all future sections inherit
@@ -152,7 +155,7 @@ Note: Phase 6 depends on Phase 2 (not Phase 5), so it can run in parallel with P
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Codebase Cleanup | 0/? | Not started | - |
+| 1. Codebase Cleanup | 0/2 | Planning complete | - |
 | 2. i18n Foundation + Lab Aesthetic | 0/? | Not started | - |
 | 3. 3D Robot Subsystem | 0/? | Not started | - |
 | 4. Chatbot Integration | 0/? | Not started | - |
