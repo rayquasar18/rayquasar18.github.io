@@ -5,6 +5,41 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import BaseVideo from "@/components/BaseVideo";
 import AnimatedDiv from "@/components/AnimatedDiv";
 
+// --- Scroll Animation Constants ---
+
+// Pixel offset for initial video scale calculation (accounts for header + text height)
+const HERO_HEADER_OFFSET_PX = 95;
+
+// TranslateY percentage factor used in initial video positioning
+const HERO_TRANSLATE_Y_FACTOR = 40;
+
+// Scroll progress keyframes (0 = top of section, 1 = end of section)
+const SCROLL_KEYFRAMES = {
+  // Video expansion: small rounded -> full width
+  VIDEO_EXPAND_START: 0,
+  VIDEO_EXPAND_END: 0.07,
+  // Video translateY correction
+  VIDEO_TRANSLATE_CORRECTION_END: 0.02,
+  // Quote text fades in
+  QUOTE_FADE_START: 0.07,
+  QUOTE_FADE_END: 0.1,
+  // Quote text zooms through
+  QUOTE_ZOOM_START: 0.15,
+  QUOTE_ZOOM_MID: 0.6,
+  QUOTE_ZOOM_END: 1.0,
+} as const;
+
+// Quote transform values at each keyframe
+const QUOTE_TRANSFORM = {
+  SCALE: { INITIAL: 1, MID: 70, FINAL: 220 },
+  TRANSLATE_Y: { INITIAL: "0%", MID: "1700%", FINAL: "5200%" },
+} as const;
+
+// Video border radius transition
+const VIDEO_BORDER_RADIUS = {
+  INITIAL: "2rem",
+  FINAL: "0rem",
+} as const;
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -19,7 +54,7 @@ const HeroSection = () => {
         const screenWidth = window.innerWidth;
 
         const targetWidth = textRef.current.offsetWidth;
-        const targetHeight = screenHeight - textHeight - 95;
+        const targetHeight = screenHeight - textHeight - HERO_HEADER_OFFSET_PX;
 
         const scaleX = targetWidth / screenWidth;
         const scaleY = targetHeight / screenHeight;
@@ -39,20 +74,21 @@ const HeroSection = () => {
     offset: ["start start", "end start"], 
   });
 
- 
-  const scaleX = useTransform(scrollYProgress, [0, 0.07], [initialScale.x, 1]);
-  const scaleY = useTransform(scrollYProgress, [0, 0.07], [initialScale.y, 1]);
-  const initialTranslateY = `-${(1 - initialScale.y) * 40}%`;
-  const translateY = useTransform(scrollYProgress, [0, 0.02], [initialTranslateY, "0%"]);
-  const borderRadius = useTransform(scrollYProgress, [0, 0.07], ["2rem", "0rem"]);
+
+  const scaleX = useTransform(scrollYProgress, [SCROLL_KEYFRAMES.VIDEO_EXPAND_START, SCROLL_KEYFRAMES.VIDEO_EXPAND_END], [initialScale.x, 1]);
+  const scaleY = useTransform(scrollYProgress, [SCROLL_KEYFRAMES.VIDEO_EXPAND_START, SCROLL_KEYFRAMES.VIDEO_EXPAND_END], [initialScale.y, 1]);
+  const initialTranslateY = `-${(1 - initialScale.y) * HERO_TRANSLATE_Y_FACTOR}%`;
+  const translateY = useTransform(scrollYProgress, [SCROLL_KEYFRAMES.VIDEO_EXPAND_START, SCROLL_KEYFRAMES.VIDEO_TRANSLATE_CORRECTION_END], [initialTranslateY, "0%"]);
+  const borderRadius = useTransform(scrollYProgress, [SCROLL_KEYFRAMES.VIDEO_EXPAND_START, SCROLL_KEYFRAMES.VIDEO_EXPAND_END], [VIDEO_BORDER_RADIUS.INITIAL, VIDEO_BORDER_RADIUS.FINAL]);
 
 
-  const quoteOpacity = useTransform(scrollYProgress, [0.07, 0.1], [0, 1]);
-  const quoteScale = useTransform(scrollYProgress,  [0.15, 0.6, 1.0], [1, 70, 220]);
-  const quoteTranslateY = useTransform(scrollYProgress, [0.15, 0.6, 1], ["0%", "1700%","5200%"]);
+  const quoteOpacity = useTransform(scrollYProgress, [SCROLL_KEYFRAMES.QUOTE_FADE_START, SCROLL_KEYFRAMES.QUOTE_FADE_END], [0, 1]);
+  const quoteScale = useTransform(scrollYProgress, [SCROLL_KEYFRAMES.QUOTE_ZOOM_START, SCROLL_KEYFRAMES.QUOTE_ZOOM_MID, SCROLL_KEYFRAMES.QUOTE_ZOOM_END], [QUOTE_TRANSFORM.SCALE.INITIAL, QUOTE_TRANSFORM.SCALE.MID, QUOTE_TRANSFORM.SCALE.FINAL]);
+  const quoteTranslateY = useTransform(scrollYProgress, [SCROLL_KEYFRAMES.QUOTE_ZOOM_START, SCROLL_KEYFRAMES.QUOTE_ZOOM_MID, SCROLL_KEYFRAMES.QUOTE_ZOOM_END], [QUOTE_TRANSFORM.TRANSLATE_Y.INITIAL, QUOTE_TRANSFORM.TRANSLATE_Y.MID, QUOTE_TRANSFORM.TRANSLATE_Y.FINAL]);
   return (
     <section
       ref={sectionRef}
+      // Total scroll height: 1100vh -- controls animation pacing (must be static for Tailwind JIT)
       className="flex flex-col mx-auto pt-19 lg:pt-0 h-[1100vh] max-w-screen z-10 bg-white"
       id="hero"
     >
