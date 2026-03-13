@@ -11,9 +11,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - ~~**FNDN-01**: Fix missing `"use client"` directives on components using React hooks~~ — N/A (old code removed)
 - ~~**FNDN-02**: Fix basePath bug for CV download and asset URLs in production~~ — N/A (old code removed)
-- [ ] **FNDN-03**: Fix hreflang meta tags that declare routes returning 404
+- [x] **FNDN-03**: Fix hreflang meta tags that declare routes returning 404
 - ~~**FNDN-04**: Fix LoadingScreen timing and scroll magic numbers in HeroSection~~ — N/A (old code removed)
-- [ ] **FNDN-05**: Establish lab aesthetic with grid/caro pattern background (dark theme CSS variable system)
+- [x] **FNDN-05**: Establish lab aesthetic with grid/caro pattern background (dark theme CSS variable system)
 
 ### 3D Robot
 
@@ -64,11 +64,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Internationalization
 
-- [ ] **I18N-01**: App routes are restructured to `app/[lang]/` pattern with next-intl
+- [x] **I18N-01**: App routes are restructured to `app/[lang]/` pattern with next-intl
 - [ ] **I18N-02**: User can switch between Vietnamese and English via language switcher
 - [ ] **I18N-03**: All UI text is externalized to translation files (not hardcoded)
-- [ ] **I18N-04**: Language preference is detected and persisted client-side
-- [ ] **I18N-05**: Static export generates both `/en/` and `/vi/` route trees via generateStaticParams
+- [x] **I18N-04**: Language preference is detected and persisted client-side
+- [x] **I18N-05**: Static export generates both `/en/` and `/vi/` route trees via generateStaticParams
 
 ### SEO & Performance
 
@@ -83,7 +83,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Visual & UX
 
-- [ ] **UX-01**: Consistent dark-only theme across all pages with lab aesthetic grid/caro background
+- [x] **UX-01**: Consistent dark-only theme across all pages with lab aesthetic grid/caro background
 - [ ] **UX-02**: Scroll-triggered animations (fade/slide) on content sections via Framer Motion
 - [ ] **UX-03**: Fully responsive layout for mobile, tablet, and desktop
 - [ ] **UX-04**: Footer displays social links (email, LinkedIn, GitHub) and copyright
@@ -135,14 +135,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FNDN-02 | Phase 1 | N/A (old code removed) |
 | FNDN-04 | Phase 1 | N/A (old code removed) |
 | UX-05 | Phase 1 | N/A (old code removed) |
-| FNDN-03 | Phase 2 | Pending |
-| FNDN-05 | Phase 2 | Pending |
-| I18N-01 | Phase 2 | Pending |
+| FNDN-03 | Phase 2 | Complete |
+| FNDN-05 | Phase 2 | Complete |
+| I18N-01 | Phase 2 | Complete |
 | I18N-02 | Phase 2 | Pending |
 | I18N-03 | Phase 2 | Pending |
-| I18N-04 | Phase 2 | Pending |
-| I18N-05 | Phase 2 | Pending |
-| UX-01 | Phase 2 | Pending |
+| I18N-04 | Phase 2 | Complete |
+| I18N-05 | Phase 2 | Complete |
+| UX-01 | Phase 2 | Complete |
 | ROBT-01 | Phase 3 | Pending |
 | ROBT-02 | Phase 3 | Pending |
 | ROBT-03 | Phase 3 | Pending |
