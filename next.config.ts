@@ -1,15 +1,12 @@
-// next.config.js
-const isProd = process.env.NODE_ENV === 'production';
-const prefix = process.env.NEXT_PUBLIC_BASE_PATH ;
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true, 
+    unoptimized: true,
   },
   trailingSlash: true,
-  assetPrefix: isProd ? prefix : '',
-  basePath: isProd ? prefix : '',
-  output: 'export'
+  output: "export",
 };
 
-module.exports = nextConfig;
+export default nextConfig;

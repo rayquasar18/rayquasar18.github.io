@@ -24,7 +24,7 @@ const MarlinGeoSQ_Medium = localFont({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://quanmofii.github.io/"),
+  metadataBase: new URL("https://rayquasar18.github.io/"),
   title: {
     default: "QuanMofii",
     template: "Hà Minh Quân",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "QuanMofii",
-      url: "https://quanmofii.github.io/",
+      url: "https://rayquasar18.github.io/",
     },
   ],
   creator: "QuanMofii",
@@ -67,14 +67,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "vi-VN",
-    url: "https://quanmofii.github.io/",
+    url: "https://rayquasar18.github.io/",
     siteName: "Hà Minh Quân Portfolio | QuanMofii",
     title: "Hà Minh Quân Portfolio | QuanMofii",
     description:
       "Hà Minh Quân Portfolio | QuanMofii, AI engineer in NLP, LLMs, and chatbots.",
     images: [
       {
-        url: "https://quanmofii.github.io/share_img.png",
+        url: "https://rayquasar18.github.io/share_img.png",
         width: 1200,
         height: 630,
         alt: "Hà Minh Quân Portfolio | QuanMofii, AI engineer in NLP, LLMs, and chatbots.",
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     description:
       "Hà Minh Quân Portfolio | QuanMofii, AI engineer in NLP, LLMs, and chatbots.",
     creator: "@QuanMofii",
-    images: ["https://quanmofii.github.io/share_img.png"],
+    images: ["https://rayquasar18.github.io/share_img.png"],
   },
   robots: {
     index: true,
@@ -131,15 +131,15 @@ export default function RootLayout({
               "@type": "Person",
               name: "Ha Minh Quan",
               alternateName: "QuanMofii",
-              url: "https://QuanMofii.github.io/",
-              image: "https://QuanMofii.github.io/avatar.jpg",
+              url: "https://rayquasar18.github.io/",
+              image: "https://rayquasar18.github.io/avatar.jpg",
               jobTitle: "AI Engineer | Chatbot Developer | LLM Specialist",
               worksFor: {
                 "@type": "Organization",
                 name: "QuanMofii",
               },
               sameAs: [
-                "https://github.com/QuanMofii",
+                "https://github.com/rayquasar18",
                 "https://www.linkedin.com/in/ha-minh-quan-b10717294/",
                 "https://x.com/QuanMofii",
               ],

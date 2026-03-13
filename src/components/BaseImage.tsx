@@ -9,12 +9,9 @@ interface BaseImageProps {
 }
 
 const BaseImage = ({ src, alt, className = "" }: BaseImageProps) => {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-  const fullSrc = `${basePath}${src}`
-
   return (
     <Image
-      src={fullSrc}
+      src={src}
       alt={alt}
       className={className}
       fill

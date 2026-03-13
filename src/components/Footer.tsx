@@ -95,12 +95,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-8 mt-8 mb-4 overflow-hidden w-full ">
           <div className="col-span-1 md:col-span-2 text-center ">
             <Link
-              href="https://github.com/QuanMofii/QuanMofii.github.io"
+              href="https://github.com/rayquasar18/rayquasar18.github.io"
               target="_blank"
               rel="noopener noreferrer"
             >
               <AnimatedText
-                text="#QuanMofii.github.io/"
+                text="#rayquasar18.github.io/"
                 className="text-lg break-words truncate"
               />
             </Link>

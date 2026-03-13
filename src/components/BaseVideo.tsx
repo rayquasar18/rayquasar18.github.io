@@ -7,13 +7,9 @@ interface BaseVideoProps {
 }
 
 const BaseVideo = ({ src, className = "" ,style={}}: BaseVideoProps) => {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-
-  const fullSrc = `${basePath}${src}`
-
   return (
     <video
-      src={fullSrc}
+      src={src}
       className={className}
       style={{
         ...style,
