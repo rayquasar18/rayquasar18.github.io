@@ -70,7 +70,7 @@ Plans:
 - [x] 03-02-PLAN.md — Build 3D robot components (model, scene, dynamic wrapper, loading), integrate into page, visual verification
 
 ### Phase 4: Chatbot Integration
-**Goal**: Visitors can chat with the robot — messages reach the LLM backend, responses control robot animations, and unavailability is handled gracefully
+**Goal**: Visitors can chat with the robot — messages reach the LLM backend via streaming, responses control robot animations via Zustand, and unavailability is handled gracefully with a demo fallback mode
 **Depends on**: Phase 3
 **Requirements**: CHAT-01, CHAT-02, CHAT-03, CHAT-04, CHAT-05, CHAT-06
 **Success Criteria** (what must be TRUE):
@@ -80,7 +80,11 @@ Plans:
   4. A typing indicator (dots or spinner) is shown while waiting for the API response
   5. When the LLM API is unreachable, the chat shows a friendly fallback message and the robot plays its idle animation
   6. Scrolling away and back preserves the full conversation history in the current browser session
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Chat types, Zustand store with localStorage persistence, SSE streaming service, mock/demo mode, i18n strings
+- [ ] 04-02-PLAN.md — Chat UI components (ChatBar, ChatPanel, ChatBubble, ChatInput, TypingIndicator, PromptChips), layout integration, visual verification
 
 ### Phase 5: Hero Section
 **Goal**: The hero section presents the portfolio owner's identity and the 3D robot as the visual centerpiece on a dark space background
@@ -164,7 +168,7 @@ Note: Phase 6 depends on Phase 2 (not Phase 5), so it can run in parallel with P
 | 1. Project Setup | N/A | Complete | 2026-03-13 |
 | 2. i18n Foundation + Lab Aesthetic | 0/2 | Planning complete | - |
 | 3. 3D Robot Subsystem | 2/2 | Complete   | 2026-03-14 |
-| 4. Chatbot Integration | 0/? | Not started | - |
+| 4. Chatbot Integration | 0/2 | Planning complete | - |
 | 5. Hero Section | 0/? | Not started | - |
 | 6. About + Introduce Sections | 0/? | Not started | - |
 | 7. Projects Section + Detail Pages | 0/? | Not started | - |
