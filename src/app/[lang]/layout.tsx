@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
 import {marlinGeo, saprona, geistMono} from '@/lib/fonts';
 import {Header} from '@/components/Header';
+import {ChatBar} from '@/components/chat/ChatBar';
 import type {Metadata} from 'next';
 
 export function generateStaticParams() {
@@ -56,6 +57,7 @@ export default async function LocaleLayout({
           <main className="pt-16">
             {children}
           </main>
+          <ChatBar />
         </NextIntlClientProvider>
       </body>
     </html>
