@@ -26,11 +26,11 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Chatbot
 
 - [ ] **CHAT-01**: User can type messages in a sticky bottom input bar that follows scroll
-- [ ] **CHAT-02**: Messages are sent to external LLM API endpoint via HTTP POST
-- [ ] **CHAT-03**: LLM response includes answer text + emotion field that controls robot animation state
+- [x] **CHAT-02**: Messages are sent to external LLM API endpoint via HTTP POST
+- [x] **CHAT-03**: LLM response includes answer text + emotion field that controls robot animation state
 - [ ] **CHAT-04**: Chat displays typing indicator while waiting for API response
-- [ ] **CHAT-05**: Chatbot gracefully handles API unavailability with fallback message and default robot emotion
-- [ ] **CHAT-06**: Chat history is maintained in session via Zustand store
+- [x] **CHAT-05**: Chatbot gracefully handles API unavailability with fallback message and default robot emotion
+- [x] **CHAT-06**: Chat history is maintained in session via Zustand store
 
 ### Hero Section
 
@@ -149,11 +149,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ROBT-04 | Phase 3 | Complete |
 | ROBT-05 | Phase 3 | Complete |
 | CHAT-01 | Phase 4 | Pending |
-| CHAT-02 | Phase 4 | Pending |
-| CHAT-03 | Phase 4 | Pending |
+| CHAT-02 | Phase 4 | Complete |
+| CHAT-03 | Phase 4 | Complete |
 | CHAT-04 | Phase 4 | Pending |
-| CHAT-05 | Phase 4 | Pending |
-| CHAT-06 | Phase 4 | Pending |
+| CHAT-05 | Phase 4 | Complete |
+| CHAT-06 | Phase 4 | Complete |
 | HERO-01 | Phase 5 | Pending |
 | HERO-02 | Phase 5 | Pending |
 | HERO-03 | Phase 5 | Pending |
