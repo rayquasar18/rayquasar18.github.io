@@ -42,6 +42,15 @@
     "cta": "Let's build something together",
     "copyright": "Ha Minh Quan. All rights reserved."
   },
+  "Projects": {
+    "heading": "Projects",
+    "viewProject": "View Project",
+    "challenge": "The Challenge",
+    "solution": "The Solution",
+    "liveDemo": "Live Demo",
+    "sourceCode": "Source Code",
+    "backToProjects": "Back to Projects"
+  },
   "RobotShowcase": {
     "heading": "Meet My Robot Assistant",
     "cta": "Say hello \u2014 it responds with emotions!"
