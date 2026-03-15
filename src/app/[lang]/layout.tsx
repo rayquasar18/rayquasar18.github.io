@@ -6,6 +6,7 @@ import {marlinGeo, saprona, geistMono} from '@/lib/fonts';
 import {Header} from '@/components/Header';
 import {ChatBar} from '@/components/chat/ChatBar';
 import {Footer} from '@/components/footer/Footer';
+import {CustomCursor} from '@/components/animations/CustomCursor';
 import {SmoothScrollProvider} from '@/components/providers/SmoothScrollProvider';
 import Preloader from '@/components/preloader/Preloader';
 import type {Metadata} from 'next';
@@ -64,6 +65,7 @@ export default async function LocaleLayout({
             </main>
             <Footer />
             <ChatBar />
+            <CustomCursor />
           </SmoothScrollProvider>
         </NextIntlClientProvider>
       </body>

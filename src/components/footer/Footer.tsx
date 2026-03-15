@@ -36,7 +36,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="text-text-muted transition-colors hover:text-text-primary"
+              className="slide-underline text-text-muted transition-colors hover:text-text-primary"
             >
               <Icon className="size-6" />
             </a>
