@@ -1,0 +1,51 @@
+'use client';
+
+import {useTranslations} from 'next-intl';
+import {Github, Linkedin, Twitter, Mail} from 'lucide-react';
+import {TextReveal} from '@/components/animations/TextReveal';
+
+const socialLinks = [
+  {icon: Github, href: 'https://github.com/rayquasar18', label: 'GitHub'},
+  {icon: Linkedin, href: '#', label: 'LinkedIn'},
+  {icon: Twitter, href: '#', label: 'Twitter'},
+  {icon: Mail, href: 'mailto:contact@example.com', label: 'Email'},
+];
+
+export function Footer() {
+  const t = useTranslations('Footer');
+
+  return (
+    <footer className="px-6 py-section md:px-8">
+      <div className="mx-auto max-w-[1200px]">
+        <TextReveal
+          as="h2"
+          type="chars"
+          className="font-display text-text-primary"
+          style={{
+            fontSize: 'var(--text-display-lg)',
+            fontWeight: 'var(--font-weight-display)',
+          }}
+        >
+          {t('cta')}
+        </TextReveal>
+        <div className="mt-12 flex items-center gap-6">
+          {socialLinks.map(({icon: Icon, href, label}) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="text-text-muted transition-colors hover:text-text-primary"
+            >
+              <Icon className="size-6" />
+            </a>
+          ))}
+        </div>
+        <p className="mt-8 text-sm text-text-muted">
+          &copy; {new Date().getFullYear()} {t('copyright')}
+        </p>
+      </div>
+    </footer>
+  );
+}
