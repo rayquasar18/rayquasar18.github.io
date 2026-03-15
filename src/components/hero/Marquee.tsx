@@ -21,12 +21,18 @@ export function Marquee() {
       ) as HTMLElement | null;
       if (!track) return;
 
-      tweenRef.current = gsap.to(track, {
-        xPercent: -25,
-        repeat: -1,
-        duration: 20,
-        ease: 'none',
-      });
+      // 4 copies, each 25% of track width.
+      // Animate from 0 to -50% so copies 3+4 replace copies 1+2 seamlessly.
+      tweenRef.current = gsap.fromTo(
+        track,
+        {xPercent: 0},
+        {
+          xPercent: -50,
+          repeat: -1,
+          duration: 12,
+          ease: 'none',
+        }
+      );
     },
     {scope: containerRef}
   );
@@ -34,7 +40,13 @@ export function Marquee() {
   useLenis((lenis) => {
     if (!tweenRef.current) return;
 
-    const targetSpeed = 1 + Math.min(Math.abs(lenis.velocity) / 3, 2);
+    // Direction: scroll down (velocity > 0) reverses marquee to right-to-left
+    // Idle or scroll up resumes default left-to-right
+    const shouldReverse = lenis.velocity > 0;
+    tweenRef.current.reversed(shouldReverse);
+
+    // Speed: scale 1x-5x based on scroll velocity magnitude
+    const targetSpeed = 1 + Math.min(Math.abs(lenis.velocity) / 2, 4);
 
     gsap.to(tweenRef.current, {
       timeScale: targetSpeed,
@@ -57,7 +69,7 @@ export function Marquee() {
             key={i}
             aria-hidden={i > 0 ? 'true' : undefined}
             className="shrink-0 font-display font-[300] uppercase tracking-wider text-text-primary"
-            style={{fontSize: 'var(--text-display-xl)'}}
+            style={{fontSize: 'var(--text-display-xxl)'}}
           >
             {marqueeText}
             {SEPARATOR}
