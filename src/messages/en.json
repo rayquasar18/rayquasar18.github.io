@@ -35,6 +35,10 @@
   "Footer": {
     "copyright": "Ha Minh Quan. All rights reserved."
   },
+  "RobotShowcase": {
+    "heading": "Meet My Robot Assistant",
+    "cta": "Say hello \u2014 it responds with emotions!"
+  },
   "Chat": {
     "placeholder": "Type a message...",
     "send": "Send",
