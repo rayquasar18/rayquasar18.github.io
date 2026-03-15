@@ -8,6 +8,7 @@ import {ChatBar} from '@/components/chat/ChatBar';
 import {Footer} from '@/components/footer/Footer';
 import {CustomCursor} from '@/components/animations/CustomCursor';
 import {SmoothScrollProvider} from '@/components/providers/SmoothScrollProvider';
+import {TransitionProvider} from '@/components/transitions/TransitionProvider';
 import Preloader from '@/components/preloader/Preloader';
 import type {Metadata} from 'next';
 
@@ -60,9 +61,11 @@ export default async function LocaleLayout({
           <SmoothScrollProvider>
             <Preloader />
             <Header />
-            <main className="pt-16">
-              {children}
-            </main>
+            <TransitionProvider>
+              <main className="pt-16">
+                {children}
+              </main>
+            </TransitionProvider>
             <Footer />
             <ChatBar />
             <CustomCursor />

@@ -2,6 +2,7 @@
 
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
+import {TransitionLink} from '@/components/transitions/TransitionLink';
 import {LanguageSwitcher} from './LanguageSwitcher';
 import {motion, AnimatePresence} from 'framer-motion';
 
@@ -24,34 +25,34 @@ export function MobileMenu({isOpen, onClose}: MobileMenuProps) {
           className="absolute top-16 left-0 right-0 bg-surface-base/95 backdrop-blur-md border-b border-border"
         >
           <nav className="flex flex-col gap-5 px-6 py-8">
-            <Link
+            <TransitionLink
               href="/"
               onClick={onClose}
-              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+              className="slide-underline text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
             >
               {t('home')}
-            </Link>
+            </TransitionLink>
             <Link
               href="/#about"
               onClick={onClose}
-              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+              className="slide-underline text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
             >
               {t('about')}
             </Link>
-            <Link
+            <TransitionLink
               href="/projects"
               onClick={onClose}
-              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+              className="slide-underline text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
             >
               {t('projects')}
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
               href="/blog"
               onClick={onClose}
-              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+              className="slide-underline text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
             >
               {t('blog')}
-            </Link>
+            </TransitionLink>
             <div className="pt-4 border-t border-border">
               <LanguageSwitcher />
             </div>

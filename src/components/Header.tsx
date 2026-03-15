@@ -4,6 +4,8 @@ import {useState, useEffect} from 'react';
 import {useTranslations} from 'next-intl';
 import {Menu, X} from 'lucide-react';
 import {Link} from '@/i18n/navigation';
+import {TransitionLink} from '@/components/transitions/TransitionLink';
+import {MagneticHover} from '@/components/animations/MagneticHover';
 import {LanguageSwitcher} from './LanguageSwitcher';
 import {MobileMenu} from './MobileMenu';
 
@@ -33,40 +35,50 @@ export function Header() {
     >
       <div className="flex h-16 items-center justify-between px-6 md:px-8">
         {/* Brand mark -- text-only minimal logo */}
-        <Link
-          href="/"
-          className="font-display text-lg tracking-wider uppercase text-text-primary"
-        >
-          Quasar
-        </Link>
+        <MagneticHover strength={10}>
+          <TransitionLink
+            href="/"
+            className="font-display text-lg tracking-wider uppercase text-text-primary"
+          >
+            Quasar
+          </TransitionLink>
+        </MagneticHover>
 
         {/* Desktop nav + language switcher */}
         <div className="hidden items-center gap-8 md:flex">
           <nav className="flex items-center gap-8">
-            <Link
-              href="/"
-              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
-            >
-              {t('home')}
-            </Link>
-            <Link
-              href="/#about"
-              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
-            >
-              {t('about')}
-            </Link>
-            <Link
-              href="/projects"
-              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
-            >
-              {t('projects')}
-            </Link>
-            <Link
-              href="/blog"
-              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
-            >
-              {t('blog')}
-            </Link>
+            <MagneticHover>
+              <TransitionLink
+                href="/"
+                className="slide-underline text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+              >
+                {t('home')}
+              </TransitionLink>
+            </MagneticHover>
+            <MagneticHover>
+              <Link
+                href="/#about"
+                className="slide-underline text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+              >
+                {t('about')}
+              </Link>
+            </MagneticHover>
+            <MagneticHover>
+              <TransitionLink
+                href="/projects"
+                className="slide-underline text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+              >
+                {t('projects')}
+              </TransitionLink>
+            </MagneticHover>
+            <MagneticHover>
+              <TransitionLink
+                href="/blog"
+                className="slide-underline text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+              >
+                {t('blog')}
+              </TransitionLink>
+            </MagneticHover>
           </nav>
           <LanguageSwitcher />
         </div>
