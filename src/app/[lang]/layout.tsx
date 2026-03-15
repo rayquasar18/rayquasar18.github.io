@@ -6,6 +6,7 @@ import {marlinGeo, saprona, geistMono} from '@/lib/fonts';
 import {Header} from '@/components/Header';
 import {ChatBar} from '@/components/chat/ChatBar';
 import {SmoothScrollProvider} from '@/components/providers/SmoothScrollProvider';
+import Preloader from '@/components/preloader/Preloader';
 import type {Metadata} from 'next';
 
 export function generateStaticParams() {
@@ -55,6 +56,7 @@ export default async function LocaleLayout({
       >
         <NextIntlClientProvider locale={lang} messages={messages}>
           <SmoothScrollProvider>
+            <Preloader />
             <Header />
             <main className="pt-16">
               {children}
