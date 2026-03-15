@@ -3,12 +3,32 @@ import {setRequestLocale, getTranslations} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import Link from 'next/link';
 import {TextReveal} from '@/components/animations/TextReveal';
+import {buildAlternates} from '@/lib/metadata';
+import type {Metadata} from 'next';
 
 export function generateStaticParams() {
   return projects.flatMap((p) => [
     {lang: 'en', slug: p.slug},
     {lang: 'vi', slug: p.slug},
   ]);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{lang: string; slug: string}>;
+}): Promise<Metadata> {
+  const {lang, slug} = await params;
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) return {};
+  const title = lang === 'vi' ? project.titleVi : project.title;
+  const description =
+    lang === 'vi' ? project.descriptionVi : project.description;
+  return {
+    title,
+    description,
+    alternates: buildAlternates(`projects/${slug}`),
+  };
 }
 
 export default async function ProjectDetailPage({

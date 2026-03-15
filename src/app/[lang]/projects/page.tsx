@@ -1,9 +1,25 @@
 import {projects} from '@/data/projects';
 import {ProjectGrid} from '@/components/projects/ProjectGrid';
-import {setRequestLocale} from 'next-intl/server';
+import {setRequestLocale, getTranslations} from 'next-intl/server';
+import {buildAlternates} from '@/lib/metadata';
+import type {Metadata} from 'next';
 
 export function generateStaticParams() {
   return [{lang: 'en'}, {lang: 'vi'}];
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{lang: string}>;
+}): Promise<Metadata> {
+  const {lang} = await params;
+  const t = await getTranslations({locale: lang, namespace: 'Projects'});
+  return {
+    title: 'Projects',
+    description: t('description'),
+    alternates: buildAlternates('projects'),
+  };
 }
 
 export default async function ProjectsPage({

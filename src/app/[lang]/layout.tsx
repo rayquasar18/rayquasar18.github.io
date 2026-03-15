@@ -10,6 +10,7 @@ import {CustomCursor} from '@/components/animations/CustomCursor';
 import {SmoothScrollProvider} from '@/components/providers/SmoothScrollProvider';
 import {TransitionProvider} from '@/components/transitions/TransitionProvider';
 import Preloader from '@/components/preloader/Preloader';
+import {SITE_URL, SITE_NAME, defaultOgImage} from '@/lib/metadata';
 import type {Metadata} from 'next';
 
 export function generateStaticParams() {
@@ -25,8 +26,21 @@ export async function generateMetadata({
   const t = await getTranslations({locale: lang, namespace: 'Metadata'});
 
   return {
-    title: t('title'),
+    metadataBase: new URL(SITE_URL),
+    title: {
+      template: '%s | Ha Minh Quan',
+      default: t('title'),
+    },
     description: t('description'),
+    openGraph: {
+      siteName: SITE_NAME,
+      locale: lang === 'vi' ? 'vi_VN' : 'en_US',
+      type: 'website',
+      images: defaultOgImage,
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
     alternates: {
       languages: {
         en: '/en/',

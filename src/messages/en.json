@@ -44,6 +44,7 @@
   },
   "Projects": {
     "heading": "Projects",
+    "description": "A collection of AI and software engineering projects by Ha Minh Quan",
     "viewProject": "View Project",
     "challenge": "The Challenge",
     "solution": "The Solution",
@@ -57,6 +58,7 @@
   },
   "Blog": {
     "heading": "Blog",
+    "description": "Articles on AI engineering, NLP, LLM systems, and software development",
     "searchPlaceholder": "Search posts...",
     "allTags": "All",
     "noResults": "No posts found matching your criteria.",

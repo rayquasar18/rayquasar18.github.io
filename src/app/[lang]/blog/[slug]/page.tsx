@@ -9,6 +9,9 @@ import {SeriesNav} from '@/components/blog/SeriesNav';
 import {notFound} from 'next/navigation';
 import {setRequestLocale, getTranslations} from 'next-intl/server';
 import Link from 'next/link';
+import {buildAlternates, defaultOgImage} from '@/lib/metadata';
+import {articleJsonLd, safeJsonLd} from '@/lib/jsonld';
+import type {Metadata} from 'next';
 
 export function generateStaticParams() {
   const enPosts = getAllPosts('en');
@@ -17,6 +20,31 @@ export function generateStaticParams() {
     ...enPosts.map((p) => ({lang: 'en', slug: p.slug})),
     ...viPosts.map((p) => ({lang: 'vi', slug: p.slug})),
   ];
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{lang: string; slug: string}>;
+}): Promise<Metadata> {
+  const {lang, slug} = await params;
+  let post;
+  try {
+    post = getPostBySlug(lang, slug);
+  } catch {
+    return {};
+  }
+  const {meta} = post;
+  return {
+    title: meta.title,
+    description: meta.excerpt,
+    openGraph: {
+      type: 'article',
+      publishedTime: meta.date,
+      images: defaultOgImage,
+    },
+    alternates: buildAlternates(`blog/${slug}`),
+  };
 }
 
 function extractHeadings(content: string) {
@@ -76,6 +104,21 @@ export default async function BlogPostPage({
 
   return (
     <div className="min-h-dvh px-6 py-section md:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonLd(
+            articleJsonLd({
+              title: meta.title,
+              date: meta.date,
+              excerpt: meta.excerpt,
+              slug,
+              lang,
+              tags: meta.tags,
+            }),
+          ),
+        }}
+      />
       <div className="mx-auto max-w-[1100px]">
         <Link
           href={`/${lang}/blog/`}

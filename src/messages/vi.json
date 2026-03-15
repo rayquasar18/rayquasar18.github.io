@@ -44,6 +44,7 @@
   },
   "Projects": {
     "heading": "Du An",
+    "description": "Cac du an AI va ky thuat phan mem cua Ha Minh Quan",
     "viewProject": "Xem Du An",
     "challenge": "Thach Thuc",
     "solution": "Giai Phap",
@@ -57,6 +58,7 @@
   },
   "Blog": {
     "heading": "Blog",
+    "description": "Bai viet ve ky thuat AI, NLP, he thong LLM, va phat trien phan mem",
     "searchPlaceholder": "Tim kiem bai viet...",
     "allTags": "Tat ca",
     "noResults": "Khong tim thay bai viet phu hop.",
