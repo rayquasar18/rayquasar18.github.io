@@ -51,9 +51,10 @@ export default function RobotScene() {
     <>
       <LoadingOverlay />
       <Canvas
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         camera={{position: [0, 1, 5], fov: 45}}
-        gl={{antialias: true, powerPreference: 'default'}}
+        gl={{antialias: false, powerPreference: 'high-performance'}}
+        frameloop="demand"
       >
         <PerformanceMonitor
           onDecline={() => setPerformanceTier('low')}

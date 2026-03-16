@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
-import { gsap, SplitText, useGSAP } from '@/lib/gsap';
+import { gsap, useGSAP } from '@/lib/gsap';
 import { useLenis } from 'lenis/react';
 
 const PRELOADER_KEY = 'rq-preloader-seen';
@@ -63,56 +63,43 @@ export default function Preloader() {
       )
         return;
 
-      const split1 = SplitText.create(text1Ref.current, {
-        type: 'chars',
-        charsClass: 'inline-block',
-      });
-      const split2 = SplitText.create(text2Ref.current, {
-        type: 'chars',
-        charsClass: 'inline-block',
-      });
-
       const tl = gsap.timeline({ onComplete: onSequenceComplete });
 
-      // Initial state: all characters invisible
-      tl.set(split1.chars, { opacity: 0 });
-      tl.set(split2.chars, { opacity: 0 });
+      // Initial state: both texts invisible
+      tl.set(text1Ref.current, { opacity: 0 });
+      tl.set(text2Ref.current, { opacity: 0 });
 
-      // Phase 1: "Welcome to party" fade in letter-by-letter
-      tl.to(split1.chars, {
+      // Phase 1: "Welcome to party" — fade in whole sentence
+      tl.to(text1Ref.current, {
         opacity: 1,
-        duration: 0.05,
-        stagger: 0.03,
+        duration: 0.8,
         ease: 'power2.out',
       });
       // Hold
-      tl.to({}, { duration: 0.5 });
-      // Reverse stagger fade out
-      tl.to(split1.chars, {
+      tl.to({}, { duration: 0.6 });
+      // Fade out whole sentence
+      tl.to(text1Ref.current, {
         opacity: 0,
-        duration: 0.05,
-        stagger: 0.03,
+        duration: 0.6,
         ease: 'power2.in',
       });
 
-      // Phase 2: "Quasar" fade in letter-by-letter
-      tl.to(split2.chars, {
+      // Phase 2: "Quasar" — fade in whole word
+      tl.to(text2Ref.current, {
         opacity: 1,
-        duration: 0.05,
-        stagger: 0.04,
+        duration: 0.8,
         ease: 'power2.out',
       });
       // Hold
-      tl.to({}, { duration: 0.5 });
-      // Reverse stagger fade out
-      tl.to(split2.chars, {
+      tl.to({}, { duration: 0.6 });
+      // Fade out whole word
+      tl.to(text2Ref.current, {
         opacity: 0,
-        duration: 0.05,
-        stagger: 0.04,
+        duration: 0.6,
         ease: 'power2.in',
       });
 
-      // Phase 3: Curtain split-reveal (simultaneous via 'curtain' label)
+      // Phase 3: Curtain split-reveal
       tl.to(
         topHalfRef.current,
         { yPercent: -100, duration: 1, ease: 'power3.inOut' },
