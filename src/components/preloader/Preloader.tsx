@@ -23,6 +23,9 @@ function useShowPreloader(): boolean {
 
     if (isHomepage && !alreadySeen) {
       setShow(true);
+    } else {
+      // Safety: ensure hiding class is removed if preloader won't show
+      document.body.classList.remove('preloader-pending');
     }
   }, [pathname]);
 
@@ -49,6 +52,7 @@ export default function Preloader() {
   const onSequenceComplete = useCallback(() => {
     lenis?.start();
     sessionStorage.setItem(PRELOADER_KEY, 'true');
+    document.body.classList.remove('preloader-pending');
     setIsComplete(true);
   }, [lenis]);
 
@@ -118,7 +122,7 @@ export default function Preloader() {
   if (!shouldShow || isComplete) return null;
 
   return (
-    <div ref={containerRef} className="fixed inset-0 z-[60]">
+    <div ref={containerRef} className="fixed inset-0 z-[60]" style={{ visibility: 'visible' }}>
       {/* Text container: centered, above curtain halves */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
         <div
