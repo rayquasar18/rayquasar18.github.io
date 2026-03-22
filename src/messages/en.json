@@ -42,6 +42,12 @@
     "story2": "Today, I design and build intelligent systems that go beyond simple automation. From orchestrating multi-agent workflows to architecting retrieval-augmented generation pipelines, I focus on making AI that's reliable, explainable, and genuinely useful.",
     "expertise": "My core expertise spans NLP, LLM fine-tuning and orchestration, multi-agent system design, and RAG architecture. I'm passionate about bridging the gap between cutting-edge research and production-ready applications that real people use every day."
   },
+  "Achievements": {
+    "heading": "Achievements",
+    "award": "Awards",
+    "education": "Education",
+    "experience": "Experience"
+  },
   "Footer": {
     "cta": "Let's build something together",
     "copyright": "Ha Minh Quan. All rights reserved."

@@ -42,6 +42,12 @@
     "story2": "Ngay nay, minh thiet ke va xay dung cac he thong thong minh vuot xa tu dong hoa don gian. Tu dieu phoi cac quy trinh lam viec da tac nhan den kien truc cac duong ong RAG, minh tap trung vao viec tao ra AI dang tin cay, giai thich duoc va thuc su huu ich.",
     "expertise": "Chuyen mon cot loi cua minh bao gom NLP, tinh chinh va dieu phoi LLM, thiet ke he thong da tac nhan, va kien truc RAG. Minh dam me thu hep khoang cach giua nghien cuu tien tien va cac ung dung san sang cho san xuat ma moi nguoi su dung hang ngay."
   },
+  "Achievements": {
+    "heading": "Thanh tuu",
+    "award": "Giai thuong",
+    "education": "Hoc van",
+    "experience": "Kinh nghiem"
+  },
   "Footer": {
     "cta": "Hay cung xay dung dieu gi do",
     "copyright": "Hà Minh Quân. Bảo lưu mọi quyền."
