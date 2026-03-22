@@ -1,11 +1,9 @@
 import {getTranslations} from 'next-intl/server';
-import {Github, Linkedin, Twitter, Mail} from 'lucide-react';
+import {Github, Mail} from 'lucide-react';
 import {TextReveal} from '@/components/animations/TextReveal';
 
 const socialLinks = [
   {icon: Github, href: 'https://github.com/rayquasar18', label: 'GitHub'},
-  {icon: Linkedin, href: '#', label: 'LinkedIn'},
-  {icon: Twitter, href: '#', label: 'Twitter'},
   {icon: Mail, href: 'mailto:contact@example.com', label: 'Email'},
 ];
 
