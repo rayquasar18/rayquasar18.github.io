@@ -1,9 +1,9 @@
 'use client';
 
 import {useEffect, useRef} from 'react';
-import {motion} from 'framer-motion';
 import {X, Trash2} from 'lucide-react';
 import {useTranslations} from 'next-intl';
+import {gsap, useGSAP} from '@/lib/gsap';
 import {useChatStore} from '@/stores/useChatStore';
 import {isApiConfigured, sendMessage} from '@/services/chat';
 import {ChatBubble} from './ChatBubble';
@@ -12,13 +12,24 @@ import {PromptChips} from './PromptChips';
 
 /**
  * Transparent glassmorphism chat panel that floats above the input bar.
- * Slides up with spring animation via framer-motion AnimatePresence.
+ * Slides up with GSAP animation on mount; exit animation handled by ChatBar
+ * via delayed unmount pattern.
  */
 export function ChatPanel({onClose}: {onClose: () => void}) {
   const t = useTranslations('Chat');
   const messages = useChatStore((s) => s.messages);
   const isStreaming = useChatStore((s) => s.isStreaming);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  // Enter animation on mount
+  useGSAP(() => {
+    if (!panelRef.current) return;
+    gsap.fromTo(panelRef.current,
+      {y: 20, opacity: 0},
+      {y: 0, opacity: 1, duration: 0.4, ease: 'power2.out'}
+    );
+  }, {scope: panelRef});
 
   // Auto-scroll to bottom on new messages or streaming content
   useEffect(() => {
@@ -39,11 +50,9 @@ export function ChatPanel({onClose}: {onClose: () => void}) {
   const isEmpty = messages.length === 0;
 
   return (
-    <motion.div
-      initial={{y: 20, opacity: 0}}
-      animate={{y: 0, opacity: 1}}
-      exit={{y: 20, opacity: 0}}
-      transition={{type: 'spring', damping: 25, stiffness: 300}}
+    <div
+      ref={panelRef}
+      style={{opacity: 0, transform: 'translateY(20px)'}}
       className="w-full md:w-[500px] mb-2 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.05)]"
     >
       {/* Header */}
@@ -98,6 +107,6 @@ export function ChatPanel({onClose}: {onClose: () => void}) {
         )}
         {isStreaming && <TypingIndicator />}
       </div>
-    </motion.div>
+    </div>
   );
 }

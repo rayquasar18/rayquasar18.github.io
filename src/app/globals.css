@@ -152,3 +152,9 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--greige-400);
 }
+
+/* Chat typing indicator bounce animation */
+@keyframes bounce-dot {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
