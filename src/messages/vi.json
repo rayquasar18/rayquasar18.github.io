@@ -4,11 +4,13 @@
     "description": "Kỹ sư AI chuyên về NLP, LLM, hệ thống đa tác tử, và kiến trúc RAG"
   },
   "Header": {
-    "brand": "RayQuasar",
     "home": "Trang Chủ",
-    "about": "Giới Thiệu",
-    "projects": "Dự Án",
+    "aboutMe": "Về Tôi",
+    "highlight": "Nổi Bật",
+    "work": "Dự Án",
+    "contact": "Liên Hệ",
     "blog": "Blog",
+    "github": "GitHub",
     "menu": "Menu",
     "close": "Close",
     "letsTalk": "Let's Talk",

@@ -4,11 +4,13 @@
     "description": "AI Engineer specializing in NLP, LLM, multi-agent systems, and RAG architecture"
   },
   "Header": {
-    "brand": "RayQuasar",
     "home": "Home",
-    "about": "About",
-    "projects": "Projects",
+    "aboutMe": "About Me",
+    "highlight": "Highlight",
+    "work": "Work",
+    "contact": "Contact",
     "blog": "Blog",
+    "github": "GitHub",
     "menu": "Menu",
     "close": "Close",
     "letsTalk": "Let's Talk",

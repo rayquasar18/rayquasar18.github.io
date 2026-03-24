@@ -1,11 +1,12 @@
 'use client';
 
-import {useState, useCallback} from 'react';
+import {useState, useCallback, useRef} from 'react';
 import {useLocale, useTranslations} from 'next-intl';
 import {usePathname, useRouter} from '@/i18n/navigation';
 import {TransitionLink} from '@/components/transitions/TransitionLink';
-import {MagneticHover} from '@/components/animations/MagneticHover';
-import {MenuOverlay} from './MenuOverlay';
+import {PillButton} from './header/PillButton';
+import {DropdownMenu} from './header/DropdownMenu';
+import {useHeaderScroll} from './header/useHeaderScroll';
 
 export function Header() {
   const t = useTranslations('Header');
@@ -13,6 +14,7 @@ export function Header() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
 
   const toggleLocale = useCallback(() => {
     const next = locale === 'en' ? 'vi' : 'en';
@@ -20,64 +22,78 @@ export function Header() {
     router.replace(pathname, {locale: next});
   }, [locale, router, pathname]);
 
-  const toggleMenu = useCallback(() => {
-    setMenuOpen(prev => !prev);
-  }, []);
+  const toggleMenu = useCallback(() => setMenuOpen((prev) => !prev), []);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+
+  useHeaderScroll({
+    headerRef,
+    menuOpen,
+    onScrollClose: closeMenu,
+  });
 
   return (
-    <>
-      <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
-        <div className="flex h-16 items-center justify-between px-6 md:px-8 pointer-events-auto">
-          {/* Left: Brand mark */}
-          <MagneticHover strength={10}>
-            <TransitionLink
-              href="/"
-              className="font-display text-lg tracking-wider uppercase text-text-primary"
-            >
-              Quasar
-            </TransitionLink>
-          </MagneticHover>
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+      <div className="flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8 pointer-events-auto">
+        {/* Left: Logo */}
+        <TransitionLink
+          href="/"
+          className="font-body text-[20px] font-medium uppercase tracking-[0.1em] transition-colors duration-200"
+          style={{color: 'var(--greige-900)'}}
+          onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            (e.currentTarget as HTMLElement).style.color = 'var(--greige-700)';
+          }}
+          onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            (e.currentTarget as HTMLElement).style.color = 'var(--greige-900)';
+          }}
+        >
+          QUASAR
+        </TransitionLink>
 
-          {/* Right: 3 buttons */}
-          <div className="flex items-center gap-4 md:gap-6">
-            {/* 1. Language toggle */}
-            <MagneticHover>
-              <button
-                onClick={toggleLocale}
-                className="text-sm uppercase tracking-wider text-text-secondary hover:text-text-primary transition-colors"
-                aria-label={t('switchLang')}
-              >
-                {locale === 'en' ? 'VI' : 'EN'}
-              </button>
-            </MagneticHover>
+        {/* Right: Actions */}
+        <div className="flex items-center gap-2">
+          {/* Language Toggle - circle */}
+          <button
+            onClick={toggleLocale}
+            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full text-[13px] font-medium uppercase tracking-[0.08em] font-body cursor-pointer select-none transition-colors duration-300"
+            style={{backgroundColor: 'var(--warm-white-overlay)', color: 'var(--greige-900)'}}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--greige-200)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--warm-white-overlay)';
+            }}
+            aria-label={t('switchLang')}
+            type="button"
+          >
+            {locale === 'en' ? 'VI' : 'EN'}
+          </button>
 
-            {/* 2. Let's Talk mailto */}
-            <MagneticHover>
-              <a
-                href="mailto:contact@example.com"
-                className="text-sm uppercase tracking-wider text-text-secondary hover:text-text-primary transition-colors"
-                aria-label="Send email"
-              >
-                {t('letsTalk')}
-              </a>
-            </MagneticHover>
+          {/* LET'S TALK - dark pill, hidden on mobile */}
+          <PillButton
+            label={t('letsTalk')}
+            variant="dark"
+            href="mailto:haminhquan12c7@gmail.com"
+            dots="single"
+            ariaLabel="Send email"
+            hidden={true}
+          />
 
-            {/* 3. Menu toggle */}
-            <MagneticHover>
-              <button
-                onClick={toggleMenu}
-                className="text-sm uppercase tracking-wider text-text-secondary hover:text-text-primary transition-colors"
-                aria-expanded={menuOpen}
-                aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              >
-                {menuOpen ? t('close') : t('menu')}
-              </button>
-            </MagneticHover>
-          </div>
+          {/* MENU/CLOSE - light pill */}
+          <PillButton
+            label={menuOpen ? t('close') : t('menu')}
+            variant="light"
+            onClick={toggleMenu}
+            dots="double"
+            dotsRotated={menuOpen}
+            ariaLabel={menuOpen ? 'Close menu' : 'Open menu'}
+            ariaExpanded={menuOpen}
+            ariaControls="header-dropdown"
+          />
         </div>
-      </header>
+      </div>
 
-      <MenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
-    </>
+      {/* Dropdown Menu */}
+      <DropdownMenu isOpen={menuOpen} onClose={closeMenu} />
+    </header>
   );
 }

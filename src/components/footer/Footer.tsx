@@ -11,7 +11,7 @@ export async function Footer() {
   const t = await getTranslations('Footer');
 
   return (
-    <footer className="px-6 py-section md:px-8">
+    <footer id="contact" className="px-6 py-section md:px-8">
       <div className="mx-auto max-w-[1200px]">
         <TextReveal
           as="h2"

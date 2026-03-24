@@ -92,7 +92,7 @@ export default async function LocaleLayout({
             <Preloader />
             <Header />
             <TransitionProvider>
-              <main className="pt-16">
+              <main className="pt-20">
                 {children}
               </main>
             </TransitionProvider>
