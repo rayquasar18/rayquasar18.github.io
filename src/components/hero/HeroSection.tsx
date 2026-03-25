@@ -154,7 +154,7 @@ export function HeroSection() {
       {/* Centered photo */}
       <div
         ref={photoRef}
-        className="absolute inset-0 flex items-center justify-center"
+        className="absolute inset-0 flex items-end justify-center"
       >
         <img
           src="/images/hero-sazabi.png"
