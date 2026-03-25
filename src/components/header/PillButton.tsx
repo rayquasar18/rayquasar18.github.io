@@ -119,28 +119,44 @@ export function PillButton({
       )}
       {dots === 'double' && (
         <span
-          ref={dotsRef}
-          className="flex items-center justify-center"
-          style={{width: '14px', height: '14px', gap: '3px', flexShrink: 0}}
+          style={{
+            width: '14px',
+            height: '14px',
+            flexShrink: 0,
+            position: 'relative',
+          }}
         >
           <span
+            ref={dotsRef}
             style={{
-              width: '5px',
-              height: '5px',
-              borderRadius: '50%',
-              backgroundColor: dotsRotated ? 'var(--greige-900)' : 'var(--greige-500)',
-              transition: 'background-color 200ms ease',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '3px',
             }}
-          />
-          <span
-            style={{
-              width: '5px',
-              height: '5px',
-              borderRadius: '50%',
-              backgroundColor: dotsRotated ? 'var(--greige-900)' : 'var(--greige-500)',
-              transition: 'background-color 200ms ease',
-            }}
-          />
+          >
+            <span
+              style={{
+                width: '5px',
+                height: '5px',
+                borderRadius: '50%',
+                backgroundColor: dotsRotated ? 'var(--greige-900)' : 'var(--greige-500)',
+                transition: 'background-color 200ms ease',
+              }}
+            />
+            <span
+              style={{
+                width: '5px',
+                height: '5px',
+                borderRadius: '50%',
+                backgroundColor: dotsRotated ? 'var(--greige-900)' : 'var(--greige-500)',
+                transition: 'background-color 200ms ease',
+              }}
+            />
+          </span>
         </span>
       )}
     </>
