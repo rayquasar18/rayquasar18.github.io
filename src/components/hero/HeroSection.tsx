@@ -2,6 +2,7 @@
 
 import {useRef, useCallback} from 'react';
 import {useTranslations} from 'next-intl';
+import {useLenis} from 'lenis/react';
 import {gsap, ScrollTrigger, useGSAP} from '@/lib/gsap';
 import {usePreloaderDone} from '@/hooks/usePreloaderDone';
 import {PillButton} from '@/components/header/PillButton';
@@ -15,11 +16,14 @@ export function HeroSection() {
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const preloaderDone = usePreloaderDone();
+  const lenis = useLenis();
 
   const scrollToAbout = useCallback(() => {
     const el = document.getElementById('about');
-    if (el) el.scrollIntoView({behavior: 'smooth'});
-  }, []);
+    if (!el) return;
+    const easing = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+    lenis?.scrollTo(el, {offset: -80, duration: 1.2, easing});
+  }, [lenis]);
 
   // --- Entrance animations (gated on preloader) ---
   useGSAP(
