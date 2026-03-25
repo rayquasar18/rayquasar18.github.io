@@ -45,9 +45,21 @@ export function HeroSection() {
         ease: 'power2.out',
       });
 
-      // 2. Title: deblur + fade in (starts 0.25s after photo)
+      // 2. Title: deblur + fade in
       tl.to(
         titleRef.current,
+        {
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 0.8,
+          ease: 'power2.out',
+        },
+        '-=0.95'
+      );
+
+      // 3. Subtitle: deblur + fade in
+      tl.to(
+        subtitleRef.current,
         {
           opacity: 1,
           filter: 'blur(0px)',
@@ -57,19 +69,7 @@ export function HeroSection() {
         '-=0.75'
       );
 
-      // 3. Subtitle: deblur + fade in (starts 0.25s after title)
-      tl.to(
-        subtitleRef.current,
-        {
-          opacity: 1,
-          filter: 'blur(0px)',
-          duration: 0.8,
-          ease: 'power2.out',
-        },
-        '-=0.55'
-      );
-
-      // 4. Scroll indicator: fade in (starts 0.25s after subtitle)
+      // 4. Scroll indicator: fade in
       tl.to(
         scrollIndicatorRef.current,
         {
@@ -77,7 +77,7 @@ export function HeroSection() {
           duration: 0.6,
           ease: 'power2.out',
         },
-        '-=0.55'
+        '-=0.75'
       );
 
       // 5. After entrance completes, add CSS pulse class
@@ -160,7 +160,7 @@ export function HeroSection() {
           <img
             src="/images/hero-sazabi.png"
             alt={t('imageAlt')}
-            className="h-[55vh] w-auto object-contain md:h-[60vh] lg:h-[65vh]"
+            className="h-[65vh] w-auto object-contain md:h-[70vh] lg:h-[75vh]"
             loading="eager"
             fetchPriority="high"
           />
@@ -200,7 +200,7 @@ export function HeroSection() {
       </div>
 
       {/* Text block: bottom-left */}
-      <div className="absolute bottom-[22%] left-6 z-10 md:left-12 lg:left-20">
+      <div className="absolute bottom-[30%] left-6 z-10 md:left-12 lg:left-20">
         <h1
           ref={titleRef}
           className="font-display text-2xl text-text-primary md:text-[1.625rem]"

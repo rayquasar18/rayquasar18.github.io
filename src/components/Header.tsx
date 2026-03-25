@@ -3,11 +3,12 @@
 import {useState, useCallback, useRef, useEffect} from 'react';
 import {useLocale, useTranslations} from 'next-intl';
 import {usePathname} from '@/i18n/navigation';
-import {gsap} from '@/lib/gsap';
+import {gsap, useGSAP} from '@/lib/gsap';
 import {TransitionLink} from '@/components/transitions/TransitionLink';
 import {PillButton} from './header/PillButton';
 import {DropdownMenu} from './header/DropdownMenu';
 import {useHeaderScroll} from './header/useHeaderScroll';
+import {usePreloaderDone} from '@/hooks/usePreloaderDone';
 
 export function Header() {
   const t = useTranslations('Header');
@@ -18,10 +19,24 @@ export function Header() {
   const actionsRef = useRef<HTMLDivElement>(null);
   const localeBtnRef = useRef<HTMLButtonElement>(null);
   const reducedMotion = useRef(false);
+  const preloaderDone = usePreloaderDone();
 
   useEffect(() => {
     reducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }, []);
+
+  // Header entrance: fade in after preloader
+  useGSAP(
+    () => {
+      if (!preloaderDone || !headerRef.current) return;
+      gsap.fromTo(
+        headerRef.current,
+        {opacity: 0, y: -20},
+        {opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'}
+      );
+    },
+    {dependencies: [preloaderDone]}
+  );
 
   const toggleLocale = useCallback(() => {
     const next = locale === 'en' ? 'vi' : 'en';
@@ -62,7 +77,7 @@ export function Header() {
   const altLabel = locale === 'en' ? 'VI' : 'EN';
 
   return (
-    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 pointer-events-none" style={{opacity: 0}}>
       <div className="flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8 pointer-events-auto">
         {/* Left: Logo */}
         <TransitionLink
