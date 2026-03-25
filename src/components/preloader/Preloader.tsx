@@ -53,6 +53,7 @@ export default function Preloader() {
   }, [phase, lock]);
 
   const onSequenceComplete = useCallback(() => {
+    try { sessionStorage.setItem('rq-preloader-seen', 'true'); } catch (_) {}
     unlock();
     const curtain = document.getElementById('preloader-curtain');
     if (curtain) curtain.remove();
@@ -67,9 +68,14 @@ export default function Preloader() {
       const curtain = document.getElementById('preloader-curtain');
       if (!curtain || !text1Ref.current || !text2Ref.current) return;
 
-      const topHalf = curtain.children[0] as HTMLElement;
-      const bottomHalf = curtain.children[1] as HTMLElement;
-      if (!topHalf || !bottomHalf) return;
+      const svg = curtain.querySelector('svg') as SVGSVGElement;
+      if (!svg) return;
+
+      const topPath = svg.querySelector('#curtain-clip-top path') as SVGPathElement;
+      const bottomPath = svg.querySelector('#curtain-clip-bottom path') as SVGPathElement;
+      const topRect = svg.querySelector('#curtain-top') as SVGRectElement;
+      const bottomRect = svg.querySelector('#curtain-bottom') as SVGRectElement;
+      if (!topPath || !bottomPath || !topRect || !bottomRect) return;
 
       // Enable pointer events during animation so curtain blocks interaction
       curtain.style.pointerEvents = 'auto';
@@ -89,9 +95,26 @@ export default function Preloader() {
       tl.to({}, { duration: 0.6 });
       tl.to(text2Ref.current, { opacity: 0, duration: 0.6, ease: 'power2.in' });
 
-      // Curtain split-reveal
-      tl.to(topHalf, { yPercent: -100, duration: 1, ease: 'power3.inOut' }, 'curtain');
-      tl.to(bottomHalf, { yPercent: 100, duration: 1, ease: 'power3.inOut' }, 'curtain');
+      // Curtain split-reveal with bezier curve
+      const proxy = { curve: 0, slide: 0 };
+
+      tl.to(proxy, {
+        curve: 0.15,
+        slide: 1,
+        duration: 1,
+        ease: 'power3.inOut',
+        onUpdate: () => {
+          const c = proxy.curve;
+          const s = proxy.slide;
+          // Top half: bottom edge curves DOWN (concave)
+          topPath.setAttribute('d', `M 0,0 L 1,0 L 1,0.5 Q 0.5,${0.5 + c} 0,0.5 Z`);
+          // Bottom half: top edge curves UP (concave)
+          bottomPath.setAttribute('d', `M 0,0.5 Q 0.5,${0.5 - c} 1,0.5 L 1,1 L 0,1 Z`);
+          // Slide halves out of viewport via SVG transform attribute
+          topRect.setAttribute('transform', `translate(0, ${-s * 100})`);
+          bottomRect.setAttribute('transform', `translate(0, ${s * 100})`);
+        },
+      }, 'curtain');
     },
     { scope: containerRef, dependencies: [phase, onSequenceComplete] }
   );

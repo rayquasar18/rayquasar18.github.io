@@ -79,12 +79,27 @@ export default async function LocaleLayout({
           id="preloader-curtain"
           style={{position:'fixed',inset:0,zIndex:60,pointerEvents:'none'}}
         >
-          <div style={{position:'absolute',inset:'0 0 50%',background:'#000'}} />
-          <div style={{position:'absolute',inset:'50% 0 0',background:'#000'}} />
+          <svg
+            style={{position:'absolute',width:'100%',height:'100%'}}
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <clipPath id="curtain-clip-top" clipPathUnits="objectBoundingBox">
+                <path d="M 0,0 L 1,0 L 1,0.501 Q 0.5,0.501 0,0.501 Z" />
+              </clipPath>
+              <clipPath id="curtain-clip-bottom" clipPathUnits="objectBoundingBox">
+                <path d="M 0,0.499 Q 0.5,0.499 1,0.499 L 1,1 L 0,1 Z" />
+              </clipPath>
+            </defs>
+            <rect id="curtain-top" x="0" y="0" width="100" height="100" fill="#000" clipPath="url(#curtain-clip-top)" />
+            <rect id="curtain-bottom" x="0" y="0" width="100" height="100" fill="#000" clipPath="url(#curtain-clip-bottom)" />
+          </svg>
         </div>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var p=window.location.pathname;var h=['/','/en','/en/','/vi','/vi/'];if(h.indexOf(p)===-1){var c=document.getElementById('preloader-curtain');if(c)c.remove()}}catch(e){var c=document.getElementById('preloader-curtain');if(c)c.remove()}})();`,
+            __html: `(function(){try{var p=window.location.pathname;var h=['/','/en','/en/','/vi','/vi/'];var c=document.getElementById('preloader-curtain');if(!c)return;if(h.indexOf(p)===-1){c.remove();return}if(sessionStorage.getItem('rq-preloader-seen')==='true'){c.remove();return}}catch(e){var c=document.getElementById('preloader-curtain');if(c)c.remove()}})();`,
           }}
         />
         <NextIntlClientProvider locale={lang} messages={messages}>
