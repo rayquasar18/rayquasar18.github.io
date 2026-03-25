@@ -58,8 +58,7 @@ export default function Preloader() {
     const curtain = document.getElementById('preloader-curtain');
     if (curtain) curtain.remove();
     setPhase('done');
-    setDone();
-  }, [unlock, setDone]);
+  }, [unlock]);
 
   useGSAP(
     () => {
@@ -115,8 +114,12 @@ export default function Preloader() {
           bottomRect.setAttribute('transform', `translate(0, ${s * 100})`);
         },
       }, 'curtain');
+
+      // Signal page sections to start their entrance animations
+      // ~0.5s into the 1s curtain reveal so hero entrance overlaps with curtain disappearing
+      tl.call(() => { setDone(); }, [], 'curtain+=0.5');
     },
-    { scope: containerRef, dependencies: [phase, onSequenceComplete] }
+    { scope: containerRef, dependencies: [phase, onSequenceComplete, setDone] }
   );
 
   if (phase === 'done') return null;
