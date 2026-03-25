@@ -151,7 +151,7 @@ export function HeroSection() {
       ref={heroRef}
       className="relative h-[100dvh] -mt-20 overflow-hidden"
     >
-      {/* Centered photo with blur gradient */}
+      {/* Centered photo */}
       <div
         ref={photoRef}
         className="absolute inset-0 flex items-center justify-center"
@@ -163,36 +163,37 @@ export function HeroSection() {
           loading="eager"
           fetchPriority="high"
         />
-        {/* Edge gradients — positioned on full-viewport container for consistent coverage */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%]"
-          style={{
-            background:
-              'linear-gradient(to top, var(--warm-white) 10%, transparent 100%)',
-          }}
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-[15%]"
-          style={{
-            background:
-              'linear-gradient(to bottom, var(--warm-white) 1%, transparent 100%)',
-          }}
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-[10%]"
-          style={{
-            background:
-              'linear-gradient(to right, var(--warm-white) 1%, transparent 100%)',
-          }}
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-[10%]"
-          style={{
-            background:
-              'linear-gradient(to left, var(--warm-white) 1%, transparent 100%)',
-          }}
-        />
       </div>
+
+      {/* Edge gradients — fixed to section, unaffected by photo parallax */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%] z-[1]"
+        style={{
+          background:
+            'linear-gradient(to top, var(--warm-white) 10%, transparent 100%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[15%] z-[1]"
+        style={{
+          background:
+            'linear-gradient(to bottom, var(--warm-white) 1%, transparent 100%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 w-[10%] z-[1]"
+        style={{
+          background:
+            'linear-gradient(to right, var(--warm-white) 1%, transparent 100%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 w-[10%] z-[1]"
+        style={{
+          background:
+            'linear-gradient(to left, var(--warm-white) 1%, transparent 100%)',
+        }}
+      />
 
       {/* Text block: bottom-left */}
       <div className="absolute bottom-[30%] left-6 z-10 md:left-12 lg:left-20">
