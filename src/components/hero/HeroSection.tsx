@@ -222,16 +222,20 @@ export function HeroSection() {
           ref={titleRef}
           className="font-display text-2xl text-text-primary md:text-[1.625rem]"
         >
-          {t('title')}
+          <span className="inline-block rounded-md bg-surface-base/40 px-2 py-0.5 backdrop-blur-[6px]">
+            {t('title')}
+          </span>
         </h1>
         <p
           ref={subtitleRef}
           className="mt-0.5 font-body text-lg text-text-secondary md:text-xl"
         >
-          {t('subtitle')}
+          <span className="inline-block rounded-md bg-surface-base/40 px-2 py-0.5 backdrop-blur-[6px]">
+            {t('subtitle')}
+          </span>
         </p>
-        <div ref={buttonsRef} className="mt-3 flex items-center gap-3">
-          <span className="font-body text-lg text-text-secondary md:text-xl">{t('me')}</span>
+        <div ref={buttonsRef} className="flex items-center gap-3">
+          <span className="inline-block rounded-md bg-surface-base/40 px-1.5 py-0.5 backdrop-blur-[6px] font-body text-lg text-text-secondary md:text-xl">{t('me')}</span>
           <PillButton
             label="Ha Minh Quan"
             variant="outline"
