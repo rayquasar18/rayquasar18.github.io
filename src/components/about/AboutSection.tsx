@@ -70,9 +70,9 @@ export function AboutSection() {
         paddingBottom: 'var(--spacing-section)',
       }}
     >
-      <div className="mx-auto max-w-[1200px] px-6 md:px-8">
-        {/* About Title (D-10, D-11) */}
-        <div className="mb-12 text-center">
+      <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
+        {/* About Title */}
+        <div className="mb-20 text-center">
           <TextReveal
             as="h2"
             type="words"
@@ -137,7 +137,7 @@ export function AboutSection() {
         {/* Floating Image (sits behind content, parallax slower) */}
         <div
           className="relative overflow-hidden"
-          style={{marginTop: '80px', marginBottom: '80px'}}
+          style={{marginTop: '120px', marginBottom: '120px'}}
         >
           <div ref={imageRef} className="relative mx-auto max-w-[85%] md:max-w-[70%] lg:max-w-[60%]">
             <img
@@ -213,8 +213,8 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* Services Block (D-25 to D-30) */}
-      <div className="mx-auto max-w-[1200px] px-6 md:px-8">
+      {/* Services Block */}
+      <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
         <ServicesBlock />
       </div>
     </section>
