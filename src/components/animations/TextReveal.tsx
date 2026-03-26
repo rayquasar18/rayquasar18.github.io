@@ -58,9 +58,20 @@ export function TextReveal({
     {scope: ref, dependencies: [preloaderDone]},
   );
 
+  // Convert \n in string children to <br /> elements
+  const rendered =
+    typeof children === 'string' && children.includes('\n')
+      ? children.split('\n').map((line, i, arr) => (
+          <span key={i}>
+            {line}
+            {i < arr.length - 1 && <br />}
+          </span>
+        ))
+      : children;
+
   return (
     <Tag ref={ref as React.Ref<never>} className={className} style={style}>
-      {children}
+      {rendered}
     </Tag>
   );
 }

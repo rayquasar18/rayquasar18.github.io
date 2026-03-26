@@ -78,7 +78,7 @@ export function ServicesBlock() {
             <h4
               className="font-display text-text-primary"
               style={{
-                fontSize: 'var(--text-2xl)',
+                fontSize: 'var(--text-3xl)',
                 fontWeight: 'var(--font-weight-display)',
                 lineHeight: '1.3',
               }}
@@ -88,10 +88,9 @@ export function ServicesBlock() {
             {/* Service body */}
             <p
               className="mt-6 font-body text-text-secondary"
-              style={{fontSize: 'var(--text-lg)', lineHeight: '1.7', whiteSpace: 'pre-line'}}
-            >
-              {t(service.bodyKey)}
-            </p>
+              style={{fontSize: 'var(--text-2xl)', lineHeight: '1.7'}}
+              dangerouslySetInnerHTML={{__html: t(service.bodyKey).replace(/\n/g, '<br />')}}
+            />
           </div>
         ))}
       </div>
