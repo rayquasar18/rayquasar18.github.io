@@ -8,7 +8,7 @@ export function MiniQuoteSection() {
 
   return (
     <section
-      className="flex min-h-[40vh] max-h-[50vh] items-center justify-center px-6 md:px-8 lg:px-20"
+      className="flex items-center justify-center px-6 md:px-8 lg:px-20"
       style={{
         paddingTop: 'var(--spacing-section-sm)',
         paddingBottom: 'var(--spacing-section-sm)',
@@ -19,11 +19,10 @@ export function MiniQuoteSection() {
           as="p"
           type="words"
           stagger={0.04}
-          className="font-display text-text-primary"
+          className="font-body text-text-secondary"
           style={{
-            fontSize: 'var(--text-display-md)',
-            fontWeight: 'var(--font-weight-display)',
-            lineHeight: '1.2',
+            fontSize: 'var(--text-lg)',
+            lineHeight: '1.7',
           }}
         >
           {t('quote')}
