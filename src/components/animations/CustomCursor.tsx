@@ -58,15 +58,6 @@ export function CustomCursor() {
       'a, button, [role="button"], [data-cursor-hover], [data-cursor-text], [data-cursor-drag], [data-cursor-magnetic] { cursor: none !important; }';
     document.head.appendChild(styleTag);
 
-    // Smooth cursor follow via gsap.quickTo — dot is instant, ring trails
-    const dotXTo = gsap.quickTo(dot, 'x', {duration: 0.05, ease: 'power3'});
-    const dotYTo = gsap.quickTo(dot, 'y', {duration: 0.05, ease: 'power3'});
-    // Position the wrapper div (not SVG) so rotation doesn't conflict
-    const ringXTo = gsap.quickTo(ringWrap, 'x', {duration: 0.2, ease: 'power3'});
-    const ringYTo = gsap.quickTo(ringWrap, 'y', {duration: 0.2, ease: 'power3'});
-    const labelXTo = gsap.quickTo(label, 'x', {duration: 0.2, ease: 'power3'});
-    const labelYTo = gsap.quickTo(label, 'y', {duration: 0.2, ease: 'power3'});
-
     // Size constants (actual rendered px via width/height on SVG)
     const DEFAULT_SIZE = 48;
     const EXPAND_SIZE = 72;
@@ -216,12 +207,11 @@ export function CustomCursor() {
 
     // Mouse move handler — update cursor positions + magnetic effect
     const onMouseMove = (e: MouseEvent) => {
-      dotXTo(e.clientX);
-      dotYTo(e.clientY);
-      ringXTo(e.clientX);
-      ringYTo(e.clientY);
-      labelXTo(e.clientX);
-      labelYTo(e.clientY);
+      // Dot follows instantly
+      gsap.set(dot, {x: e.clientX, y: e.clientY});
+      // Ring and label trail with smooth follow
+      gsap.to(ringWrap, {x: e.clientX, y: e.clientY, duration: 0.2, ease: 'power3', overwrite: true});
+      gsap.to(label, {x: e.clientX, y: e.clientY, duration: 0.2, ease: 'power3', overwrite: true});
 
       // Magnetic effect: shift target element toward cursor
       if (currentState === 'magnetic' && currentMagneticTarget) {
