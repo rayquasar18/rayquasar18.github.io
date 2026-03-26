@@ -1,11 +1,96 @@
 'use client';
 
-import {useRef} from 'react';
+import {useRef, useCallback} from 'react';
 import {useTranslations} from 'next-intl';
 import {gsap, useGSAP} from '@/lib/gsap';
 import {usePreloaderDone} from '@/hooks/usePreloaderDone';
 import {TextReveal} from '@/components/animations/TextReveal';
 import {ServicesBlock} from '@/components/about/ServicesBlock';
+
+function DownloadCvButton() {
+  const btnRef = useRef<HTMLAnchorElement>(null);
+
+  const handleMouseEnter = useCallback(() => {
+    const el = btnRef.current;
+    if (!el) return;
+    el.style.backgroundColor = 'var(--greige-100)';
+    // Slide dot out to right, slide icon in from left
+    const dot = el.querySelector('.cv-dot') as HTMLElement;
+    const icon = el.querySelector('.cv-icon') as HTMLElement;
+    const spans = el.querySelectorAll('.roll-text');
+    if (dot) gsap.to(dot, {x: 20, opacity: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    if (icon) gsap.to(icon, {x: 0, opacity: 1, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    gsap.to(spans, {y: '-100%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    const el = btnRef.current;
+    if (!el) return;
+    el.style.backgroundColor = 'transparent';
+    const dot = el.querySelector('.cv-dot') as HTMLElement;
+    const icon = el.querySelector('.cv-icon') as HTMLElement;
+    const spans = el.querySelectorAll('.roll-text');
+    if (dot) gsap.to(dot, {x: 0, opacity: 1, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    if (icon) gsap.to(icon, {x: -12, opacity: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    gsap.to(spans, {y: '0%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
+  }, []);
+
+  return (
+    <a
+      ref={btnRef}
+      href="/cv.pdf"
+      download
+      className="inline-flex items-center cursor-pointer select-none font-body text-[15px] font-medium uppercase tracking-[0.08em]"
+      style={{
+        backgroundColor: 'transparent',
+        color: 'var(--greige-900)',
+        border: '1px solid var(--greige-900)',
+        borderRadius: '9999px',
+        height: '48px',
+        paddingLeft: '30px',
+        paddingRight: '32px',
+        gap: '10px',
+        transition: 'background-color 300ms ease',
+      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Download icon — hidden by default, slides in on hover */}
+      <span
+        className="cv-icon"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          opacity: 0,
+          transform: 'translateX(-12px)',
+          flexShrink: 0,
+        }}
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 2v8m0 0L5 7m3 3l3-3M3 13h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </span>
+
+      {/* Text with roll effect */}
+      <div style={{overflow: 'hidden', position: 'relative', height: '1em', lineHeight: 1}}>
+        <span className="roll-text" style={{display: 'block'}}>Download CV</span>
+        <span className="roll-text" style={{display: 'block'}}>Download CV</span>
+      </div>
+
+      {/* Single dot — slides out on hover */}
+      <span
+        className="cv-dot"
+        style={{
+          width: '5px',
+          height: '5px',
+          borderRadius: '50%',
+          backgroundColor: 'var(--greige-900)',
+          flexShrink: 0,
+        }}
+      />
+    </a>
+  );
+}
 
 export function AboutSection() {
   const t = useTranslations('About');
@@ -88,9 +173,9 @@ export function AboutSection() {
       if (!preloaderDone || !bottomImageRef.current) return;
       gsap.fromTo(
         bottomImageRef.current,
-        {yPercent: 30},
+        {yPercent: 18},
         {
-          yPercent: -30,
+          yPercent: -18,
           ease: 'none',
           scrollTrigger: {
             trigger: bottomImageRef.current,
@@ -190,6 +275,11 @@ export function AboutSection() {
               >
                 {t('introBio')}
               </TextReveal>
+
+              {/* Download CV button */}
+              <div className="mt-10">
+                <DownloadCvButton />
+              </div>
             </div>
           </div>
 
@@ -232,7 +322,7 @@ export function AboutSection() {
             <div
               ref={bottomImageRef}
               className="md:col-span-3 md:-mr-12 lg:-mr-20 overflow-hidden"
-              style={{marginTop: '-25rem'}}
+              style={{marginTop: '-30rem'}}
             >
               <div className="relative">
                 <img
