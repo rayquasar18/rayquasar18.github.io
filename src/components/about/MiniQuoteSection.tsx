@@ -10,8 +10,8 @@ export function MiniQuoteSection() {
     <section
       className="flex items-center justify-center px-6 md:px-8 lg:px-20"
       style={{
-        paddingTop: 'var(--spacing-section-sm)',
-        paddingBottom: 'var(--spacing-section-sm)',
+        paddingTop: 'var(--spacing-section)',
+        paddingBottom: 'var(--spacing-section)',
       }}
     >
       <div className="mx-auto max-w-[900px] text-center">

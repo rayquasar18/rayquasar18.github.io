@@ -105,7 +105,7 @@ export function AboutSection() {
       {/* Content — sits above the background image */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
         {/* About Title */}
-        <div className="mb-32 text-center">
+        <div className="mb-40 text-center">
           <TextReveal
             as="h2"
             type="words"
@@ -168,7 +168,7 @@ export function AboutSection() {
         </div>
 
         {/* Spacer between content blocks */}
-        <div style={{height: '200px'}} />
+        <div style={{height: '280px'}} />
 
         {/* Content Block 2: Boring part / Experience with */}
         <div
@@ -218,7 +218,7 @@ export function AboutSection() {
       </div>
 
       {/* Services Block — more separation */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-8 lg:px-12" style={{marginTop: '240px'}}>
+      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-8 lg:px-12" style={{marginTop: '320px'}}>
         <ServicesBlock />
       </div>
     </section>
