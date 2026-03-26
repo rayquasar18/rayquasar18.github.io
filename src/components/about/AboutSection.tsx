@@ -88,9 +88,9 @@ export function AboutSection() {
       if (!preloaderDone || !bottomImageRef.current) return;
       gsap.fromTo(
         bottomImageRef.current,
-        {yPercent: 18},
+        {yPercent: 30},
         {
-          yPercent: -18,
+          yPercent: -30,
           ease: 'none',
           scrollTrigger: {
             trigger: bottomImageRef.current,
@@ -110,7 +110,7 @@ export function AboutSection() {
       <div style={{paddingTop: '14rem'}}>
         <div className="mx-auto max-w-screen-2xl px-6 md:px-8 lg:px-12">
           {/* Large heading — full width */}
-          <div className="mb-16 md:mb-24">
+          <div className="mb-20 md:mb-32">
             <TextReveal
               as="h2"
               type="words"
@@ -127,7 +127,7 @@ export function AboutSection() {
           </div>
 
           {/* Top row: Image left (4/7) + Text right (3/7) */}
-          <div className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-20 items-start">
             {/* Image — clips to grid cell, overflows only left via negative margin */}
             <div
               ref={topImageRef}
@@ -138,7 +138,7 @@ export function AboutSection() {
                   src="/images/about-deepstriker.png"
                   alt="Deep Striker mech artwork"
                   className="w-full object-cover object-center"
-                  style={{height: '85vh', minHeight: '600px'}}
+                  style={{height: '75vh', minHeight: '600px'}}
                   loading="lazy"
                 />
                 {/* White blur edges */}
@@ -195,7 +195,7 @@ export function AboutSection() {
 
           {/* Bottom row: Text left (4/7) + Image right (3/7) */}
           <div
-            className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-12 items-start"
+            className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-20 items-start"
             style={{marginTop: '6rem'}}
           >
             {/* Text with subtitle */}
@@ -238,7 +238,7 @@ export function AboutSection() {
                   src="/images/about-deepstriker.png"
                   alt="Deep Striker mech artwork"
                   className="w-full object-cover object-center"
-                  style={{height: '70vh', minHeight: '500px'}}
+                  style={{height: '60vh', minHeight: '500px'}}
                   loading="lazy"
                 />
                 {/* White blur edges */}
