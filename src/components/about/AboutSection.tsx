@@ -128,10 +128,10 @@ export function AboutSection() {
 
           {/* Top row: Image left (4/7) + Text right (3/7) */}
           <div className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-12 items-start">
-            {/* Image — order-2 on mobile, order-1 on md+ */}
+            {/* Image — order-2 on mobile, order-1 on md+; clips right side so it only overflows left */}
             <div
               ref={topImageRef}
-              className="relative order-2 md:order-1 md:col-span-4 md:-ml-12 lg:-ml-20"
+              className="relative order-2 md:order-1 md:col-span-4 md:-ml-12 lg:-ml-20 overflow-hidden"
             >
               <div className="relative overflow-visible">
                 <img
@@ -161,10 +161,10 @@ export function AboutSection() {
               </div>
             </div>
 
-            {/* Text — order-1 on mobile, order-2 on md+ */}
+            {/* Text — order-1 on mobile, order-2 on md+; z-10 ensures text stays above images */}
             <div
               ref={topTextRef}
-              className="order-1 md:order-2 md:col-span-3 flex flex-col justify-start"
+              className="relative z-10 order-1 md:order-2 md:col-span-3 flex flex-col justify-start"
             >
               {/* Subtitle with 4-pointed star icon */}
               <div className="flex items-center gap-2 mb-6">
@@ -198,10 +198,10 @@ export function AboutSection() {
             className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-12 items-start"
             style={{marginTop: '-6rem'}}
           >
-            {/* Text — order-1 on both mobile and md+ */}
+            {/* Text — order-1 on both mobile and md+; z-10 keeps text above images */}
             <div
               ref={bottomTextRef}
-              className="md:col-span-4 flex flex-col justify-start"
+              className="relative z-10 md:col-span-4 flex flex-col justify-start"
             >
               <TextReveal
                 as="p"
@@ -217,10 +217,10 @@ export function AboutSection() {
               </TextReveal>
             </div>
 
-            {/* Image right — overflow right, overlaps upward */}
+            {/* Image right — clips left side so it only overflows right */}
             <div
               ref={bottomImageRef}
-              className="md:col-span-3 md:-mr-12 lg:-mr-20"
+              className="md:col-span-3 md:-mr-12 lg:-mr-20 overflow-hidden"
             >
               <div className="relative overflow-visible">
                 <img
