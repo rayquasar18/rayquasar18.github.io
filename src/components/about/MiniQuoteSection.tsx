@@ -21,7 +21,7 @@ export function MiniQuoteSection() {
           stagger={0.04}
           className="font-body text-text-secondary"
           style={{
-            fontSize: 'var(--text-2xl)',
+            fontSize: 'var(--text-lg)',
             lineHeight: '1.7',
             whiteSpace: 'pre-line',
           }}
