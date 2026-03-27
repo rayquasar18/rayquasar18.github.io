@@ -243,9 +243,9 @@ export function AboutSection() {
             </TextReveal>
           </div>
 
-          {/* Single grid layout — 7 cols: 3 image + 1 empty spacer + 3 text */}
+          {/* Single grid layout — 6 cols: Row1 3img+1spacer+2txt, Row2 2txt+1spacer+3img */}
           <div
-            className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-0"
+            className="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-0"
           >
             {/* Row 1, Col 1-3: Image left */}
             <div
@@ -281,11 +281,11 @@ export function AboutSection() {
               </div>
             </div>
 
-            {/* Row 1, Col 5-7: Text right (col 4 is empty spacer) */}
+            {/* Row 1, Col 5-6: Text right (col 4 is empty spacer) */}
             <div
               ref={topTextRef}
               className="relative z-10 order-1 md:order-2 flex flex-col justify-start"
-              style={{gridRow: '1', gridColumn: '5 / 8'}}
+              style={{gridRow: '1', gridColumn: '5 / 7'}}
             >
               {/* Subtitle with 4-pointed star icon */}
               <div className="flex items-center gap-2 mb-6">
@@ -318,11 +318,11 @@ export function AboutSection() {
               </div>
             </div>
 
-            {/* Row 2, Col 1-3: Text left */}
+            {/* Row 2, Col 1-2: Text left */}
             <div
               ref={bottomTextRef}
               className="relative z-10 order-3 flex flex-col justify-start"
-              style={{gridRow: '2', gridColumn: '1 / 4', marginTop: '2rem'}}
+              style={{gridRow: '2', gridColumn: '1 / 3', marginTop: '2rem'}}
             >
               {/* Subtitle */}
               <div className="flex items-center gap-2 mb-6">
@@ -349,11 +349,11 @@ export function AboutSection() {
               </TextReveal>
             </div>
 
-            {/* Row 1-2, Col 5-7: Image right (col 4 is empty spacer) — spans both rows */}
+            {/* Row 1-2, Col 4-6: Image right (col 3 is empty spacer) — spans both rows */}
             <div
               ref={bottomImageRef}
               className="order-4 overflow-hidden"
-              style={{gridRow: '1 / 3', gridColumn: '5 / 8', alignSelf: 'end'}}
+              style={{gridRow: '1 / 3', gridColumn: '4 / 7', alignSelf: 'end'}}
             >
               <div className="relative">
                 <img
