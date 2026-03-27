@@ -225,13 +225,11 @@ export function AboutSection() {
           {/* Single grid layout — image 2 overlaps into row 1 via grid placement */}
           <div
             className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-30"
-            style={{gridTemplateRows: 'auto auto'}}
           >
             {/* Row 1, Col 1-4: Image left */}
             <div
               ref={topImageRef}
-              className="relative order-2 md:order-1 md:col-span-4 md:-ml-12 lg:-ml-20 overflow-hidden"
-              style={{gridRow: '1', gridColumn: '1 / 5'}}
+              className="relative order-2 md:order-1 md:col-span-4 md:-ml-12 lg:-ml-20 overflow-hidden md:[grid-row:1] md:[grid-column:1/5]"
             >
               <div className="relative">
                 <img
@@ -264,8 +262,7 @@ export function AboutSection() {
             {/* Row 1, Col 5-7: Text right */}
             <div
               ref={topTextRef}
-              className="relative z-10 order-1 md:order-2 md:col-span-3 flex flex-col justify-start"
-              style={{gridRow: '1', gridColumn: '5 / 8'}}
+              className="relative z-10 order-1 md:order-2 md:col-span-3 flex flex-col justify-start md:[grid-row:1] md:[grid-column:5/8]"
             >
               {/* Subtitle with 4-pointed star icon */}
               <div className="flex items-center gap-2 mb-6">
@@ -301,8 +298,7 @@ export function AboutSection() {
             {/* Row 2, Col 1-4: Text left */}
             <div
               ref={bottomTextRef}
-              className="relative z-10 md:col-span-4 flex flex-col justify-start"
-              style={{gridRow: '2', gridColumn: '1 / 5', marginTop: '6rem'}}
+              className="relative z-10 order-3 md:col-span-4 flex flex-col justify-start md:[grid-row:2] md:[grid-column:1/5] md:mt-8"
             >
               {/* Subtitle */}
               <div className="flex items-center gap-2 mb-6">
@@ -332,8 +328,7 @@ export function AboutSection() {
             {/* Row 1-2, Col 5-7: Image right — spans both rows for natural overlap */}
             <div
               ref={bottomImageRef}
-              className="md:col-span-3 md:-mr-12 lg:-mr-20 overflow-hidden"
-              style={{gridRow: '1 / 3', gridColumn: '5 / 8', alignSelf: 'end'}}
+              className="order-4 md:col-span-3 md:-mr-12 lg:-mr-20 overflow-hidden md:[grid-row:1/3] md:[grid-column:5/8] md:self-end"
             >
               <div className="relative">
                 <img
