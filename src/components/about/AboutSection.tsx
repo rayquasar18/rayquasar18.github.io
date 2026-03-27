@@ -243,15 +243,15 @@ export function AboutSection() {
             </TextReveal>
           </div>
 
-          {/* Single grid layout — 6 cols: Row1 3img+1spacer+2txt, Row2 2txt+1spacer+3img */}
+          {/* Single grid layout — 10 cols: Row1 7img+1spacer+2txt, Row2 2txt+1spacer+7img */}
           <div
-            className="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-0"
+            className="grid grid-cols-1 md:grid-cols-10 gap-8 md:gap-0"
           >
-            {/* Row 1, Col 1-3: Image left */}
+            {/* Row 1, Col 1-7: Image left */}
             <div
               ref={topImageRef}
               className="relative order-2 md:order-1 overflow-hidden"
-              style={{gridRow: '1', gridColumn: '1 / 4'}}
+              style={{gridRow: '1', gridColumn: '1 / 8'}}
             >
               <div className="relative">
                 <img
@@ -281,11 +281,11 @@ export function AboutSection() {
               </div>
             </div>
 
-            {/* Row 1, Col 5-6: Text right (col 4 is empty spacer) */}
+            {/* Row 1, Col 9-10: Text right (col 8 is empty spacer) */}
             <div
               ref={topTextRef}
               className="relative z-10 order-1 md:order-2 flex flex-col justify-start"
-              style={{gridRow: '1', gridColumn: '5 / 7'}}
+              style={{gridRow: '1', gridColumn: '9 / 11'}}
             >
               {/* Subtitle with 4-pointed star icon */}
               <div className="flex items-center gap-2 mb-6">
@@ -349,11 +349,11 @@ export function AboutSection() {
               </TextReveal>
             </div>
 
-            {/* Row 1-2, Col 4-6: Image right (col 3 is empty spacer) — spans both rows */}
+            {/* Row 1-2, Col 4-10: Image right (col 3 is empty spacer) — spans both rows */}
             <div
               ref={bottomImageRef}
               className="order-4 overflow-hidden"
-              style={{gridRow: '1 / 3', gridColumn: '4 / 7', alignSelf: 'end'}}
+              style={{gridRow: '1 / 3', gridColumn: '4 / 11', alignSelf: 'end'}}
             >
               <div className="relative">
                 <img
