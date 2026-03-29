@@ -243,15 +243,14 @@ export function AboutSection() {
             </TextReveal>
           </div>
 
-          {/* Single grid layout — 10 cols: Row1 6img+1spacer+3txt, Row2 3txt+1spacer+6img */}
+          {/* Grid: 10 cols — Row1: 6img+1spacer+3txt, Row2: 6txt+1spacer+3img (lấn lên row1) */}
           <div
-            className="grid grid-cols-1 md:grid-cols-10 gap-8 md:gap-0"
+            className="grid grid-cols-1 md:grid-cols-10 md:gap-y-8"
           >
             {/* Row 1, Col 1-6: Image left */}
             <div
               ref={topImageRef}
-              className="relative order-2 md:order-1 overflow-hidden"
-              style={{gridRow: '1', gridColumn: '1 / 7'}}
+              className="relative order-2 md:order-1 overflow-hidden md:[grid-row:1] md:[grid-column:1/7]"
             >
               <div className="relative">
                 <img
@@ -281,11 +280,10 @@ export function AboutSection() {
               </div>
             </div>
 
-            {/* Row 1, Col 8-10: Text right (col 7 is empty spacer) */}
+            {/* Row 1, Col 8-10: Text right (col 7 is spacer) */}
             <div
               ref={topTextRef}
-              className="relative z-10 order-1 md:order-2 flex flex-col justify-start"
-              style={{gridRow: '1', gridColumn: '8 / 11'}}
+              className="relative z-10 order-1 md:order-2 flex flex-col justify-start md:[grid-row:1] md:[grid-column:8/11]"
             >
               {/* Subtitle with 4-pointed star icon */}
               <div className="flex items-center gap-2 mb-6">
@@ -321,8 +319,7 @@ export function AboutSection() {
             {/* Row 2, Col 1-6: Text left */}
             <div
               ref={bottomTextRef}
-              className="relative z-10 order-3 flex flex-col justify-start"
-              style={{gridRow: '2', gridColumn: '1 / 7', marginTop: '2rem'}}
+              className="relative z-10 order-3 flex flex-col justify-start mt-8 md:[grid-row:2] md:[grid-column:1/7]"
             >
               {/* Subtitle */}
               <div className="flex items-center gap-2 mb-6">
@@ -349,11 +346,10 @@ export function AboutSection() {
               </TextReveal>
             </div>
 
-            {/* Row 2, Col 8-10: Image right (col 7 is empty spacer) — offset down */}
+            {/* Row 1-2, Col 8-10: Image right — spans both rows, self-end to overlap upward */}
             <div
               ref={bottomImageRef}
-              className="order-4 overflow-hidden"
-              style={{gridRow: '2', gridColumn: '8 / 11', marginTop: '8rem'}}
+              className="order-4 overflow-hidden self-end md:[grid-row:1/3] md:[grid-column:8/11]"
             >
               <div className="relative">
                 <img
