@@ -349,14 +349,14 @@ export function AboutSection() {
             {/* Row 1-2, Col 8-10: Image right — spans both rows, nudged down */}
             <div
               ref={bottomImageRef}
-              className="order-4 overflow-hidden self-end mt-32 md:[grid-row:1/3] md:[grid-column:8/11]"
+              className="order-4 overflow-hidden self-end mt-40 md:[grid-row:1/3] md:[grid-column:8/11]"
             >
               <div className="relative">
                 <img
                   src="/images/about-deepstriker.png"
                   alt="Deep Striker mech artwork"
                   className="w-full object-cover object-center"
-                  style={{height: '85vh', minHeight: '500px'}}
+                  style={{height: '70vh', minHeight: '500px'}}
                   loading="lazy"
                 />
                 {/* White blur edges */}
