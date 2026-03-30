@@ -250,7 +250,7 @@ export function AboutSection() {
             {/* Row 1, Col 1-6: Image left */}
             <div
               ref={topImageRef}
-              className="relative order-2 md:order-1 overflow-hidden md:[grid-row:1] md:[grid-column:1/7]"
+              className="relative order-2 md:order-1 overflow-hidden md:[grid-row:1] md:[grid-column:1/6]"
             >
               <div className="relative">
                 <img
@@ -283,7 +283,7 @@ export function AboutSection() {
             {/* Row 1, Col 8-10: Text right (col 7 is spacer) */}
             <div
               ref={topTextRef}
-              className="relative z-10 order-1 md:order-2 flex flex-col justify-start md:[grid-row:1] md:[grid-column:8/11]"
+              className="relative z-10 order-1 md:order-2 flex flex-col justify-start md:[grid-row:1] md:[grid-column:7/11]"
             >
               {/* Subtitle with 4-pointed star icon */}
               <div className="flex items-center gap-2 mb-6">
@@ -319,7 +319,7 @@ export function AboutSection() {
             {/* Row 2, Col 1-6: Text left */}
             <div
               ref={bottomTextRef}
-              className="relative z-10 order-3 flex flex-col justify-start mt-8 md:[grid-row:2] md:[grid-column:1/7]"
+              className="relative z-10 order-3 flex flex-col justify-start mt-8 md:[grid-row:2] md:[grid-column:1/6]"
             >
               {/* Subtitle */}
               <div className="flex items-center gap-2 mb-6">
@@ -349,7 +349,7 @@ export function AboutSection() {
             {/* Row 1-2, Col 8-10: Image right — spans both rows, nudged down */}
             <div
               ref={bottomImageRef}
-              className="order-4 overflow-hidden self-end mt-40 md:[grid-row:1/3] md:[grid-column:8/11]"
+              className="order-4 overflow-hidden self-end mt-40 md:[grid-row:1/3] md:[grid-column:7/11]"
             >
               <div className="relative">
                 <img
