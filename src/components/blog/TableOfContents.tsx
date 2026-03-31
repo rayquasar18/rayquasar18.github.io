@@ -1,7 +1,8 @@
 'use client';
 
-import {useState} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import {useTranslations} from 'next-intl';
+import {gsap, ScrollTrigger, useGSAP} from '@/lib/gsap';
 
 interface Heading {
   level: number;
@@ -12,6 +13,33 @@ interface Heading {
 export function TableOfContents({headings}: {headings: Heading[]}) {
   const t = useTranslations('Blog');
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string>('');
+  const tocRef = useRef<HTMLDivElement>(null);
+
+  // ScrollTrigger-based active heading tracking
+  useGSAP(() => {
+    if (headings.length === 0) return;
+
+    // Small delay to ensure MDX content is rendered and heading elements exist
+    const timer = setTimeout(() => {
+      headings.forEach((heading) => {
+        const el = document.getElementById(heading.id);
+        if (!el) return;
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 20%',
+          end: 'bottom 20%',
+          onEnter: () => setActiveId(heading.id),
+          onEnterBack: () => setActiveId(heading.id),
+        });
+      });
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, {dependencies: [headings]});
 
   if (headings.length === 0) return null;
 
@@ -23,30 +51,53 @@ export function TableOfContents({headings}: {headings: Heading[]}) {
 
   const list = (
     <ul className="space-y-2">
-      {headings.map((h) => (
-        <li key={h.id} className={indentClass(h.level)}>
-          <a
-            href={`#${h.id}`}
-            className="text-sm text-text-muted transition-colors hover:text-text-primary"
+      {headings.map((h) => {
+        const isActive = activeId === h.id;
+        return (
+          <li
+            key={h.id}
+            className={indentClass(h.level)}
+            style={{
+              borderLeft: isActive ? '2px solid var(--greige-900)' : '2px solid transparent',
+              paddingLeft: indentClass(h.level) ? undefined : '12px',
+              transition: 'border-color 200ms ease',
+            }}
           >
-            {h.text}
-          </a>
-        </li>
-      ))}
+            <a
+              href={`#${h.id}`}
+              className="text-sm transition-colors duration-200"
+              style={{
+                color: isActive ? 'var(--greige-900)' : 'var(--greige-500)',
+                fontWeight: isActive ? 500 : 300,
+                fontFamily: 'var(--font-marlin)',
+              }}
+            >
+              {h.text}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   );
 
   return (
-    <>
+    <div ref={tocRef}>
       {/* Mobile: collapsible inline block */}
-      <nav className="mb-8 rounded-lg border border-border bg-surface-elevated p-4 lg:hidden">
+      <nav
+        className="mb-8 rounded-lg p-4 lg:hidden"
+        style={{
+          backgroundColor: 'var(--warm-white-elevated)',
+          border: '1px solid rgba(136, 133, 128, 0.15)',
+        }}
+      >
         <button
           onClick={() => setOpen(!open)}
-          className="flex w-full items-center justify-between text-sm font-medium text-text-primary"
+          className="flex w-full items-center justify-between text-sm font-medium"
+          style={{color: 'var(--greige-900)'}}
         >
           {t('toc')}
           <span
-            className="transition-transform"
+            className="transition-transform duration-200"
             style={{transform: open ? 'rotate(180deg)' : 'rotate(0deg)'}}
           >
             &#9662;
@@ -57,11 +108,14 @@ export function TableOfContents({headings}: {headings: Heading[]}) {
 
       {/* Desktop: sticky sidebar */}
       <nav className="hidden lg:sticky lg:top-24 lg:block">
-        <h3 className="mb-4 text-xs font-medium uppercase tracking-widest text-text-muted">
+        <h3
+          className="mb-4 text-xs font-medium uppercase tracking-widest"
+          style={{color: 'var(--greige-500)'}}
+        >
           {t('toc')}
         </h3>
         {list}
       </nav>
-    </>
+    </div>
   );
 }
