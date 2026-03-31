@@ -87,7 +87,16 @@
     "series": "Series",
     "previousPart": "Previous",
     "nextPart": "Next",
-    "backToBlog": "Back to Blog"
+    "backToBlog": "Back to Blog",
+    "ourLatest": "OUR LATEST",
+    "allPosts": "ALL POSTS",
+    "featured": "FEATURED",
+    "minRead": "{n} min read",
+    "emptyHeading": "No posts yet",
+    "emptyBody": "Check back soon for new content.",
+    "noSearchResults": "No posts match your search.",
+    "paginationPrev": "Previous",
+    "paginationNext": "Next"
   },
   "Chat": {
     "placeholder": "Type a message...",

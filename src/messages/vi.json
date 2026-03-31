@@ -87,7 +87,16 @@
     "series": "Chuỗi bài viết",
     "previousPart": "Trước",
     "nextPart": "Tiếp",
-    "backToBlog": "Quay lại Blog"
+    "backToBlog": "Quay lại Blog",
+    "ourLatest": "BÀI VIẾT MỚI",
+    "allPosts": "TẤT CẢ BÀI VIẾT",
+    "featured": "NỔI BẬT",
+    "minRead": "{n} phút đọc",
+    "emptyHeading": "Chưa có bài viết",
+    "emptyBody": "Hãy quay lại sau để đón đọc nội dung mới.",
+    "noSearchResults": "Không tìm thấy bài viết phù hợp.",
+    "paginationPrev": "Trước",
+    "paginationNext": "Tiếp"
   },
   "Chat": {
     "placeholder": "Nhập tin nhắn...",
