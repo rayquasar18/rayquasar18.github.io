@@ -79,7 +79,7 @@ export function ServicesBlock() {
             </span>
 
             {/* Divider line */}
-            <div className="w-full h-px bg-border-primary mb-10" />
+            <div className="w-full h-px mb-10" style={{backgroundColor: 'var(--greige-300)'}} />
 
             {/* Service title */}
             <h4
