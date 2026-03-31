@@ -61,14 +61,15 @@ export function ServicesBlock() {
         </TextReveal>
       </div>
 
-      {/* Service Cards — 3 columns on md+, 1 column on mobile */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 lg:gap-20">
+      {/* Service Cards — 3x4cols with 2-col gaps on md+ */}
+      <div className="grid grid-cols-1 md:grid-cols-[4fr_2fr_4fr_2fr_4fr] gap-y-12">
         {services.map((service, i) => (
           <div
             key={service.titleKey}
             ref={(el) => {
               cardRefs.current[i] = el;
             }}
+            className={i === 0 ? 'md:[grid-column:1]' : i === 1 ? 'md:[grid-column:3]' : 'md:[grid-column:5]'}
           >
             {/* Number */}
             <span
