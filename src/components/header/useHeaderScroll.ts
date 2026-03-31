@@ -31,7 +31,7 @@ export function useHeaderScroll({headerRef, menuOpen, onScrollClose}: UseHeaderS
     if (menuOpen && !wasOpen) {
       // Menu just opened - show header immediately and set scroll anchor
       if (headerRef.current) {
-        gsap.to(headerRef.current, {y: '0%', duration: reducedMotion.current ? 0 : 0.4, ease: 'power3.inOut'});
+        gsap.to(headerRef.current, {y: '0%', duration: reducedMotion.current ? 0 : 0.4, ease: 'power3.inOut', overwrite: 'auto'});
       }
       isVisible.current = true;
       scrollCloseFired.current = false;
@@ -62,7 +62,7 @@ export function useHeaderScroll({headerRef, menuOpen, onScrollClose}: UseHeaderS
     // Force visible when menu is open
     if (menuOpenRef.current) {
       if (!isVisible.current) {
-        gsap.to(headerRef.current, {y: '0%', duration: dur, ease: 'power3.inOut'});
+        gsap.to(headerRef.current, {y: '0%', duration: dur, ease: 'power3.inOut', overwrite: 'auto'});
         isVisible.current = true;
       }
       return;
@@ -71,7 +71,7 @@ export function useHeaderScroll({headerRef, menuOpen, onScrollClose}: UseHeaderS
     // Always show at top
     if (scrollY < 80) {
       if (!isVisible.current) {
-        gsap.to(headerRef.current, {y: '0%', duration: dur, ease: 'power3.inOut'});
+        gsap.to(headerRef.current, {y: '0%', duration: dur, ease: 'power3.inOut', overwrite: 'auto'});
         isVisible.current = true;
       }
       lastDirectionChangeY.current = scrollY;
@@ -88,7 +88,7 @@ export function useHeaderScroll({headerRef, menuOpen, onScrollClose}: UseHeaderS
     // Scrolling down - hide after 80px
     if (direction === 1 && isVisible.current) {
       if (scrollY - lastDirectionChangeY.current > 80) {
-        gsap.to(headerRef.current, {y: '-100%', duration: dur, ease: 'power3.inOut'});
+        gsap.to(headerRef.current, {y: '-100%', duration: dur, ease: 'power3.inOut', overwrite: 'auto'});
         isVisible.current = false;
       }
     }
@@ -96,7 +96,7 @@ export function useHeaderScroll({headerRef, menuOpen, onScrollClose}: UseHeaderS
     // Scrolling up - reveal after 20px
     if (direction === -1 && !isVisible.current) {
       if (lastDirectionChangeY.current - scrollY > 20) {
-        gsap.to(headerRef.current, {y: '0%', duration: dur, ease: 'power3.inOut'});
+        gsap.to(headerRef.current, {y: '0%', duration: dur, ease: 'power3.inOut', overwrite: 'auto'});
         isVisible.current = true;
       }
     }

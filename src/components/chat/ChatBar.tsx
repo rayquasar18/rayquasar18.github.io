@@ -45,7 +45,7 @@ export function ChatBar() {
     if (showPanel) {
       if (!barVisible.current) {
         const dur = reducedMotion.current ? 0 : 0.4;
-        gsap.to(barRef.current, {y: '0%', duration: dur, ease: 'power3.inOut'});
+        gsap.to(barRef.current, {y: '0%', duration: dur, ease: 'power3.inOut', overwrite: 'auto'});
         barVisible.current = true;
       }
       return;
@@ -58,7 +58,7 @@ export function ChatBar() {
     // Always show near top
     if (scrollY < 80) {
       if (!barVisible.current) {
-        gsap.to(barRef.current, {y: '0%', duration: dur, ease: 'power3.inOut'});
+        gsap.to(barRef.current, {y: '0%', duration: dur, ease: 'power3.inOut', overwrite: 'auto'});
         barVisible.current = true;
       }
       lastDirectionChangeY.current = scrollY;
@@ -75,7 +75,7 @@ export function ChatBar() {
     // Scrolling down → hide after 80px
     if (direction === 1 && barVisible.current) {
       if (scrollY - lastDirectionChangeY.current > 80) {
-        gsap.to(barRef.current, {y: '100%', duration: dur, ease: 'power3.inOut'});
+        gsap.to(barRef.current, {y: '100%', duration: dur, ease: 'power3.inOut', overwrite: 'auto'});
         barVisible.current = false;
       }
     }
@@ -83,7 +83,7 @@ export function ChatBar() {
     // Scrolling up → reveal after 20px
     if (direction === -1 && !barVisible.current) {
       if (lastDirectionChangeY.current - scrollY > 20) {
-        gsap.to(barRef.current, {y: '0%', duration: dur, ease: 'power3.inOut'});
+        gsap.to(barRef.current, {y: '0%', duration: dur, ease: 'power3.inOut', overwrite: 'auto'});
         barVisible.current = true;
       }
     }
