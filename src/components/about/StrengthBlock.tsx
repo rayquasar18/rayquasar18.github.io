@@ -62,7 +62,7 @@ export function StrengthBlock() {
       {/* Left: Text — 6 cols */}
       <div
         ref={textRef}
-        className="relative z-10 flex flex-col justify-start md:[grid-column:1/7]"
+        className="relative z-10 flex flex-col justify-start md:[grid-column:1/5]"
       >
         {/* Subtitle */}
         <div className="flex items-center gap-2 mb-6">
@@ -92,7 +92,7 @@ export function StrengthBlock() {
       {/* Right: Image — 3 cols (8-10, col 7 spacer) */}
       <div
         ref={imageRef}
-        className="relative overflow-hidden self-end md:[grid-column:8/11]"
+        className="relative overflow-hidden self-end md:[grid-column:7/11]"
       >
         <div className="relative">
           <img
