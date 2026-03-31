@@ -6,6 +6,7 @@ import {getPostBySlug, getAllPosts, getSeriesPosts} from '@/lib/blog';
 import {mdxComponents} from '@/components/blog/mdx';
 import {TableOfContents} from '@/components/blog/TableOfContents';
 import {SeriesNav} from '@/components/blog/SeriesNav';
+import {BlogPostHeader} from '@/components/blog/BlogPostHeader';
 import {notFound} from 'next/navigation';
 import {setRequestLocale, getTranslations} from 'next-intl/server';
 import Link from 'next/link';
@@ -103,7 +104,7 @@ export default async function BlogPostPage({
     meta.series ? getSeriesPosts(lang, meta.series) : [];
 
   return (
-    <div className="min-h-dvh px-6 py-section md:px-8">
+    <div className="min-h-dvh px-6 pt-32 pb-20 md:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -122,7 +123,8 @@ export default async function BlogPostPage({
       <div className="mx-auto max-w-[1100px]">
         <Link
           href={`/${lang}/blog/`}
-          className="mb-12 inline-block text-sm text-text-muted transition-colors hover:text-text-primary"
+          className="mb-12 inline-block text-sm font-body font-medium transition-colors"
+          style={{color: 'var(--greige-500)'}}
         >
           &larr; {t('backToBlog')}
         </Link>
@@ -130,38 +132,8 @@ export default async function BlogPostPage({
         <div className="lg:grid lg:grid-cols-[1fr_250px] lg:gap-12">
           {/* Main content */}
           <article className="min-w-0">
-            {/* Post header */}
-            <header className="mb-12">
-              <h1
-                className="font-display text-text-primary"
-                style={{
-                  fontSize: 'var(--text-display-sm)',
-                  fontWeight: 'var(--font-weight-display)',
-                }}
-              >
-                {meta.title}
-              </h1>
-
-              <div className="mt-4 flex items-center gap-4 text-sm text-text-muted">
-                <time dateTime={meta.date}>
-                  {new Date(meta.date).toLocaleDateString(
-                    lang === 'vi' ? 'vi-VN' : 'en-US',
-                    {year: 'numeric', month: 'long', day: 'numeric'},
-                  )}
-                </time>
-              </div>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {meta.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-accent-muted px-3 py-1 text-xs text-text-accent"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </header>
+            {/* New post header with category, title, meta, cover image */}
+            <BlogPostHeader meta={meta} locale={lang} />
 
             {/* Mobile TOC (inline, collapsible) */}
             <div className="lg:hidden">
