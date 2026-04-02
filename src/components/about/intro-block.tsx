@@ -110,7 +110,7 @@ export function IntroBlock() {
           stagger={0.03}
           className="font-display text-text-primary"
           style={{
-            fontSize: 'var(--text-display-md)',
+            fontSize: 'var(--text-display-xl)',
             fontWeight: 'var(--font-weight-display)',
             lineHeight: '1.1',
           }}

@@ -26,9 +26,9 @@ export async function ProjectsSection({
           <TextReveal
             as="h2"
             type="words"
-            className="font-display uppercase tracking-[0.05em] text-text-primary"
+            className="font-display text-text-primary"
             style={{
-              fontSize: 'var(--text-display-md)',
+              fontSize: 'var(--text-display-xl)',
               fontWeight: 'var(--font-weight-display)',
             }}
           >
