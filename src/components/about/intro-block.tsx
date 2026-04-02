@@ -103,12 +103,12 @@ export function IntroBlock() {
           </span>
         </div>
 
-        {/* Big heading — uppercase */}
+        {/* Big heading */}
         <TextReveal
           as="h2"
           type="words"
           stagger={0.03}
-          className="font-display text-text-primary uppercase"
+          className="font-display text-text-primary"
           style={{
             fontSize: 'var(--text-display-md)',
             fontWeight: 'var(--font-weight-display)',
