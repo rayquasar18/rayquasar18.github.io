@@ -84,7 +84,7 @@ export function WaterRippleImage({
   return (
     <div
       ref={containerRef}
-      className={className}
+      className={`flex items-center justify-center ${className}`}
       style={mergedStyle}
       role="img"
       aria-label={alt}
