@@ -53,7 +53,8 @@ export default function WaterRippleEffect({
     const mountElement = mountRef.current
     if (!mountElement) return
     const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
+    // Orthographic camera ensures the plane fills 100% of the canvas
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true, 
       alpha: true,
@@ -206,12 +207,11 @@ export default function WaterRippleEffect({
       transparent: true,
     })
 
-    const aspectRatio = width / height
-    const geometry = new THREE.PlaneGeometry(4 * aspectRatio, 4, 64, 64) 
+    // Fullscreen quad: 2x2 plane fills the orthographic camera exactly
+    const geometry = new THREE.PlaneGeometry(2, 2, 64, 64)
     const mesh = new THREE.Mesh(geometry, material)
     scene.add(mesh)
 
-    camera.position.z = 3
     sceneRef.current = scene
     rendererRef.current = renderer
     materialRef.current = material
