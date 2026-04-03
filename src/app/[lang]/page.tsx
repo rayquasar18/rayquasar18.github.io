@@ -42,16 +42,16 @@ export default async function HomePage({
       {/* Hero section */}
       <HeroSection />
 
-      {/* Mini quote interstitial */}
-      <MiniQuoteSection />
+      {/* Mini quote interstitial — temporarily hidden */}
+      {/* <MiniQuoteSection /> */}
 
       {/* About */}
       <div id="about">
         <AboutSection />
       </div>
 
-      {/* Mini quote 2 — after about */}
-      <MiniQuoteSection quoteKey="quote2" />
+      {/* Mini quote 2 — temporarily hidden */}
+      {/* <MiniQuoteSection quoteKey="quote2" /> */}
 
       {/* Achievements */}
       <div id="achievements">
