@@ -9,8 +9,12 @@ interface PillButtonProps {
   variant: 'dark' | 'light' | 'outline';
   onClick?: () => void;
   href?: string;
+  /** Open link in new tab */
+  external?: boolean;
   dots?: 'single' | 'double' | 'none';
   dotsRotated?: boolean;
+  /** SVG icon element — shown with expand/collapse animation like DownloadCV button */
+  icon?: React.ReactNode;
   ariaLabel?: string;
   ariaExpanded?: boolean;
   ariaControls?: string;
@@ -41,13 +45,17 @@ const VARIANT_STYLES = {
   },
 } as const;
 
+const ICON_SLOT_WIDTH = 20;
+
 export function PillButton({
   label,
   variant,
   onClick,
   href,
+  external = false,
   dots = 'none',
   dotsRotated = false,
+  icon,
   ariaLabel,
   ariaExpanded,
   ariaControls,
@@ -80,7 +88,14 @@ export function PillButton({
     if (reducedMotion.current) return;
     const spans = el.querySelectorAll('.roll-text');
     gsap.to(spans, {y: '-100%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
-  }, [variant]);
+    // Icon slot animation
+    if (icon) {
+      const iconSlot = el.querySelector('.pill-icon-slot') as HTMLElement;
+      const dotSlot = el.querySelector('.pill-dot-slot') as HTMLElement;
+      if (iconSlot) gsap.to(iconSlot, {width: ICON_SLOT_WIDTH, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+      if (dotSlot) gsap.to(dotSlot, {width: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    }
+  }, [variant, icon]);
 
   const handleMouseLeave = useCallback(() => {
     const el = ref.current;
@@ -89,10 +104,18 @@ export function PillButton({
     if (reducedMotion.current) return;
     const spans = el.querySelectorAll('.roll-text');
     gsap.to(spans, {y: '0%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
-  }, [variant]);
+    // Icon slot animation
+    if (icon) {
+      const iconSlot = el.querySelector('.pill-icon-slot') as HTMLElement;
+      const dotSlot = el.querySelector('.pill-dot-slot') as HTMLElement;
+      if (iconSlot) gsap.to(iconSlot, {width: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+      if (dotSlot) gsap.to(dotSlot, {width: ICON_SLOT_WIDTH, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    }
+  }, [variant, icon]);
 
   const style = VARIANT_STYLES[variant];
   const hasDots = dots !== 'none';
+  const hasIcon = !!icon;
 
   const commonProps = {
     ref,
@@ -105,7 +128,7 @@ export function PillButton({
       height: '48px',
       ...(fixedWidth
         ? {width: `${fixedWidth}px`, paddingLeft: 0, paddingRight: 0}
-        : {paddingLeft: '30px', paddingRight: hasDots ? '32px' : '30px'}),
+        : {paddingLeft: '30px', paddingRight: hasDots || hasIcon ? '30px' : '30px'}),
       gap: hasDots ? '10px' : undefined,
       transition: 'background-color 300ms ease',
     } as React.CSSProperties,
@@ -118,8 +141,50 @@ export function PillButton({
 
   const content = (
     <>
+      {/* Icon slot — width 0 by default, expands on hover */}
+      {hasIcon && (
+        <span
+          className="pill-icon-slot"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            overflow: 'hidden',
+            width: 0,
+            flexShrink: 0,
+          }}
+        >
+          {icon}
+        </span>
+      )}
+
       <TextRoll>{label}</TextRoll>
-      {dots === 'single' && (
+
+      {/* Dot slot — visible by default when icon mode, collapses on hover */}
+      {hasIcon && (
+        <span
+          className="pill-dot-slot"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            overflow: 'hidden',
+            width: ICON_SLOT_WIDTH,
+            flexShrink: 0,
+          }}
+        >
+          <span
+            style={{
+              width: '5px',
+              height: '5px',
+              borderRadius: '50%',
+              backgroundColor: style.text,
+              flexShrink: 0,
+            }}
+          />
+        </span>
+      )}
+
+      {!hasIcon && dots === 'single' && (
         <span
           style={{
             width: '5px',
@@ -130,7 +195,7 @@ export function PillButton({
           }}
         />
       )}
-      {dots === 'double' && (
+      {!hasIcon && dots === 'double' && (
         <span
           style={{
             width: '14px',
@@ -177,7 +242,11 @@ export function PillButton({
 
   if (href) {
     return (
-      <a {...commonProps} href={href}>
+      <a
+        {...commonProps}
+        href={href}
+        {...(external ? {target: '_blank', rel: 'noopener noreferrer'} : {})}
+      >
         {content}
       </a>
     );

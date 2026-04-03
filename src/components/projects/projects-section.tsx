@@ -1,7 +1,7 @@
 import {getTranslations} from 'next-intl/server';
 import {TextReveal} from '@/components/ui/text-reveal';
 import {ProjectMasonryGrid} from '@/components/projects/project-masonry-grid';
-import {TransitionLink} from '@/components/providers/transition-link';
+import {PillButton} from '@/components/ui/pill-button';
 import type {Project} from '@/lib/data/projects';
 
 interface ProjectsSectionProps {
@@ -45,13 +45,17 @@ export async function ProjectsSection({
 
         {/* View More CTA */}
         <div className="mt-16 md:mt-24 text-center">
-          <TransitionLink
-            href="/projects"
-            className="inline-block rounded-full border border-border px-8 py-3 text-sm uppercase tracking-wider text-text-primary transition-colors hover:border-border-hover hover:bg-surface-elevated"
-
-          >
-            {t('viewMore')}
-          </TransitionLink>
+          <PillButton
+            label={t('viewMore')}
+            variant="outline"
+            href="https://github.com/rayquasar18"
+            external
+            icon={
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            }
+          />
         </div>
       </div>
     </section>
