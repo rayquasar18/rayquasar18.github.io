@@ -18,7 +18,7 @@ export async function ProjectsSection({
   return (
     <section
       id="projects"
-      className="px-6 py-section-sm md:px-8 md:py-section lg:px-12"
+      className="overflow-hidden px-6 py-section-sm md:px-8 md:py-section lg:px-12"
     >
       <div className="mx-auto max-w-screen-2xl">
         {/* Title */}

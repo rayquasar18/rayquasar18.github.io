@@ -59,7 +59,9 @@ export default async function HomePage({
       </div>
 
       {/* Projects */}
-      <ProjectsSection projects={projects.slice(0, 6)} locale={lang} />
+      <div>
+        <ProjectsSection projects={projects.slice(0, 6)} locale={lang} />
+      </div>
     </div>
   );
 }
