@@ -28,7 +28,7 @@ export function personJsonLd(): WithContext<Person> {
     url: `${SITE_URL}/en/`,
     jobTitle: 'AI Engineer',
     knowsAbout: ['NLP', 'LLM', 'Multi-Agent Systems', 'RAG'],
-    sameAs: ['https://github.com/rayquasar18'],
+    sameAs: ['https://github.com/quasar0802'],
   };
 }
 

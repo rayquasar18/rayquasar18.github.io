@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://rayquasar18.github.io',
+  siteUrl: 'https://quasar0802.github.io',
   generateRobotsTxt: true,
   outDir: './out',
   trailingSlash: true,

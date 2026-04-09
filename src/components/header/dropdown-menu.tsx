@@ -350,7 +350,7 @@ export function DropdownMenu({isOpen, onClose, actionsRef}: DropdownMenuProps) {
           }}
         >
           <ExternalButton
-            href="https://github.com/rayquasar18"
+            href="https://github.com/quasar0802"
             label={t('github')}
             variant="dark"
           />
