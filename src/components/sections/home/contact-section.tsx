@@ -1,7 +1,11 @@
 import { TextReveal } from '@/components/ui/text-reveal';
-import { contactSocials } from './data';
+import type { ContactSocial } from '@/lib/content/home';
 
-export function ContactSection() {
+type ContactSectionProps = {
+  contactSocials: ContactSocial[];
+};
+
+export function ContactSection({ contactSocials }: ContactSectionProps) {
   return (
     <section id="contact" className="box-border h-dvh bg-[#e9e9e9] px-4 py-10 text-black sm:px-6 lg:px-8" aria-label="Contact section">
       <div className="container mx-auto flex h-full flex-col justify-between">

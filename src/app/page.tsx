@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { HomePageClient } from '@/components/sections/home/home-page-client';
+import { getHomeContent } from '@/lib/content/home';
 
 export const metadata: Metadata = {
   title: 'Quasar | AI Engineer',
@@ -11,5 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootPage() {
-  return <HomePageClient />;
+  const content = getHomeContent();
+
+  return <HomePageClient content={content} />;
 }

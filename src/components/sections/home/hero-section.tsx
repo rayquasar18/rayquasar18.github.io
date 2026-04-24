@@ -1,11 +1,14 @@
-import { heroImagePath, services, socialLinks } from './data';
+import type { ServiceItem, SocialLink } from '@/lib/content/home';
 
 type HeroSectionProps = {
+  heroImagePath: string;
+  services: ServiceItem[];
+  socialLinks: SocialLink[];
   isMenuOpen: boolean;
   onOpenMenu: () => void;
 };
 
-export function HeroSection({ isMenuOpen, onOpenMenu }: HeroSectionProps) {
+export function HeroSection({ heroImagePath, services, socialLinks, isMenuOpen, onOpenMenu }: HeroSectionProps) {
   return (
     <section
       id="home"
@@ -47,12 +50,12 @@ export function HeroSection({ isMenuOpen, onOpenMenu }: HeroSectionProps) {
           <aside id="services" className="self-start lg:col-start-1 lg:row-start-1" aria-label="Core services">
             <ul className="m-0 grid list-none gap-1 p-0 md:gap-2">
               {services.map((service) => (
-                <li key={service}>
+                <li key={service.label}>
                   <a
-                    href="#services"
+                    href={service.href}
                     className="inline-flex min-h-11 items-center text-base leading-snug text-white/90 no-underline md:text-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                   >
-                    ↳ {service}
+                    ↳ {service.label}
                   </a>
                 </li>
               ))}

@@ -1,6 +1,10 @@
-import { achievements } from './data';
+import type { AchievementItem } from '@/lib/content/home';
 
-export function AchievementSection() {
+type AchievementSectionProps = {
+  achievements: AchievementItem[];
+};
+
+export function AchievementSection({ achievements }: AchievementSectionProps) {
   return (
     <section className="box-border min-h-dvh bg-white px-4 py-10 text-black sm:px-6 lg:px-8" aria-label="Achievement section">
       <div className="container mx-auto">

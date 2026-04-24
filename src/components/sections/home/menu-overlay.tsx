@@ -1,11 +1,12 @@
-import { menuItems } from './data';
+import type { MenuItem } from '@/lib/content/home';
 
 type MenuOverlayProps = {
+  menuItems: MenuItem[];
   isOpen: boolean;
   onClose: () => void;
 };
 
-export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
+export function MenuOverlay({ menuItems, isOpen, onClose }: MenuOverlayProps) {
   return (
     <div
       id="hero-menu-overlay"

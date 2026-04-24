@@ -1,7 +1,11 @@
 import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
-import { projects } from './data';
+import type { ProjectItem } from '@/lib/content/home';
 
-export function ProjectsSection() {
+type ProjectsSectionProps = {
+  projects: ProjectItem[];
+};
+
+export function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
     <section id="projects" className="box-border min-h-dvh bg-white px-4 py-10 text-black sm:px-6 lg:px-8" aria-label="Projects section">
       <div className="container mx-auto">
@@ -11,7 +15,11 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <article key={project.name} className="relative">
               <span className="pointer-events-none absolute -right-2 -top-4 z-10 text-5xl font-medium leading-none tracking-tight text-gray-500/75 md:-right-3 md:-top-6 md:text-6xl">#{index + 1}</span>
-              <div className={`aspect-[4/3] w-full ${project.placeholderClass}`} aria-hidden="true" />
+              <div
+                className={`aspect-[4/3] w-full bg-cover bg-center ${project.imageUrl ? '' : project.placeholderClass}`}
+                style={project.imageUrl ? { backgroundImage: `url('${project.imageUrl}')` } : undefined}
+                aria-hidden="true"
+              />
               <a
                 href={project.href}
                 className="mt-4 inline-block text-base tracking-wide text-black no-underline transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
