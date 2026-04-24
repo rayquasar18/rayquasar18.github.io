@@ -1,5 +1,5 @@
 ---
 label: Automate Pipeline
-href: '#services'
+href: '#about'
 order: 3
 ---

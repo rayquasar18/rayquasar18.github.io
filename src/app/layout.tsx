@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
-const siteUrl = new URL('https://quasar0802.github.io');
+const siteUrl = new URL('https://quasar082.github.io');
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,

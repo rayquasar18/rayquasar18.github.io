@@ -9,7 +9,7 @@ type ContactSectionProps = {
 export function ContactSection({ contactSocials }: ContactSectionProps) {
   return (
     <section id="contact" className="box-border h-dvh bg-[#e9e9e9] px-4 py-10 text-black sm:px-6 lg:px-8" aria-label="Contact section">
-      <div className="container mx-auto flex h-full flex-col justify-between">
+      <div className="container mx-auto flex h-full flex-col justify-between pt-10">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-12">
           <div className="flex flex-col gap-6 lg:col-span-1">
             <h2 className="m-0 w-full max-w-none text-[clamp(2rem,7.2vw,3.4rem)] leading-[0.95] tracking-tight">

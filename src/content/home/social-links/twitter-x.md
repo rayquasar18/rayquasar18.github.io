@@ -1,6 +1,6 @@
 ---
-label: Twitter/X
-href: '#contact'
-symbol: X
+label: Github
+href: 'https://github.com/quasar082'
+symbol: gh
 order: 2
 ---

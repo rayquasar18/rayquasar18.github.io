@@ -31,7 +31,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         </div>
 
         <div className="mt-20 flex justify-center">
-          <a href="https://github.com/quasar0802" target="_blank" rel="noopener noreferrer" aria-label="View more projects on GitHub">
+          <a href="https://github.com/quasar082" target="_blank" rel="noopener noreferrer" aria-label="View more projects on GitHub">
             <InteractiveHoverButton>View More</InteractiveHoverButton>
           </a>
         </div>

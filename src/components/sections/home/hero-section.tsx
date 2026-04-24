@@ -10,7 +10,7 @@ export function HeroSection({ heroImagePath, services, socialLinks }: HeroSectio
   return (
     <section
       id="home"
-      className="relative h-dvh bg-cover bg-center px-4 pb-4 pt-24 text-white sm:px-6 sm:pb-6 lg:px-8 lg:pb-8"
+      className="relative h-dvh bg-cover bg-center px-4 pb-10 pt-24 text-white sm:px-6 sm:pb-10 lg:px-8 lg:pb-8"
       style={{ backgroundImage: `url('${heroImagePath}')` }}
       aria-label="Hero section"
     >
@@ -40,21 +40,21 @@ export function HeroSection({ heroImagePath, services, socialLinks }: HeroSectio
           </div>
 
           <nav
-            className="justify-self-start lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:justify-self-end lg:self-center"
+            className="w-full justify-self-start lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:w-auto lg:max-w-full lg:justify-self-end lg:self-center"
             aria-label="Social links"
           >
-            <ul className="m-0 flex list-none flex-wrap gap-3 p-0 md:gap-4 lg:grid lg:gap-4">
+            <ul className="m-0 flex list-none flex-wrap gap-3 p-0 md:gap-4 lg:grid lg:justify-items-end lg:gap-4">
               {socialLinks.map((social) => (
                 <li key={social.label}>
                   <a
                     href={social.href}
-                    className="inline-flex min-h-11 items-center gap-2 text-base text-white/95 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white lg:text-xl lg:[text-orientation:mixed] lg:[writing-mode:vertical-rl]"
+                    className="inline-flex min-h-11 max-w-full items-center gap-2 text-base text-white/95 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white lg:text-xl lg:[text-orientation:mixed] lg:[writing-mode:vertical-rl]"
                     aria-label={social.label}
                   >
                     <span aria-hidden="true" className="text-base font-semibold leading-none lg:text-3xl">
                       {social.symbol}
                     </span>
-                    <span>{social.label}</span>
+                    <span className="max-w-full break-words">{social.label}</span>
                   </a>
                 </li>
               ))}

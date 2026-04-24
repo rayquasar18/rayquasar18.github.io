@@ -1,5 +1,5 @@
 ---
 label: Agent Orchestration
-href: '#services'
+href: '#about'
 order: 1
 ---

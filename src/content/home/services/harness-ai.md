@@ -1,5 +1,5 @@
 ---
 label: Harness AI
-href: '#services'
+href: '#about'
 order: 2
 ---
