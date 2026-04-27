@@ -25,6 +25,7 @@ const previewClassByHref: Record<string, string> = {
 };
 
 export function BlogMenuOverlay({ isOpen, onClose, items, activeHref }: BlogMenuOverlayProps) {
+  const overlayRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -37,14 +38,16 @@ export function BlogMenuOverlay({ isOpen, onClose, items, activeHref }: BlogMenu
       return;
     }
 
+    const overlay = overlayRef.current;
     const list = listRef.current;
-    if (!list) {
+    if (!overlay || !list) {
       return;
     }
 
     const EASE_FACTOR = 0.22;
+    const EDGE_BUFFER = 0.1;
 
-    let targetScrollTop = 0;
+    let targetScrollTop = list.scrollTop;
     let currentScrollTop = list.scrollTop;
     let rafId = 0;
 
@@ -60,33 +63,43 @@ export function BlogMenuOverlay({ isOpen, onClose, items, activeHref }: BlogMenu
     };
 
     const onPointerMove = (event: PointerEvent) => {
-      const rect = list.getBoundingClientRect();
+      const rect = overlay.getBoundingClientRect();
       if (rect.height <= 0) {
         return;
       }
 
-      const normalizedY = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
+      const rawY = (event.clientY - rect.top) / rect.height;
+      const clampedY = Math.min(1, Math.max(0, rawY));
+      const adjustedY = (clampedY - EDGE_BUFFER) / (1 - EDGE_BUFFER * 2);
+      const normalizedY = Math.min(1, Math.max(0, adjustedY));
       const maxScrollTop = Math.max(0, list.scrollHeight - list.clientHeight);
       targetScrollTop = normalizedY * maxScrollTop;
+    };
+
+    const onWheel = (event: WheelEvent) => {
+      event.preventDefault();
     };
 
     const onPointerLeave = () => {
       targetScrollTop = list.scrollTop;
     };
 
-    list.addEventListener('pointermove', onPointerMove);
-    list.addEventListener('pointerleave', onPointerLeave);
+    overlay.addEventListener('pointermove', onPointerMove);
+    overlay.addEventListener('pointerleave', onPointerLeave);
+    list.addEventListener('wheel', onWheel, { passive: false });
     rafId = window.requestAnimationFrame(step);
 
     return () => {
-      list.removeEventListener('pointermove', onPointerMove);
-      list.removeEventListener('pointerleave', onPointerLeave);
+      overlay.removeEventListener('pointermove', onPointerMove);
+      overlay.removeEventListener('pointerleave', onPointerLeave);
+      list.removeEventListener('wheel', onWheel);
       window.cancelAnimationFrame(rafId);
     };
   }, [isOpen]);
 
   return (
     <div
+      ref={overlayRef}
       aria-hidden={!isOpen}
       className={`fixed inset-0 z-40 bg-black transition-opacity duration-300 ease-out motion-reduce:transition-none ${isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
     >
