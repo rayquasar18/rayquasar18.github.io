@@ -42,7 +42,7 @@ export function HeroSection({ heroImagePath, services, socialLinks }: HeroSectio
           </aside>
 
           <div className="lg:col-start-1 lg:row-start-2">
-            <h1 className="m-0 max-w-full leading-tight tracking-tight lg:max-w-[12ch] text-[clamp(2rem,6vmin,15rem)] md:text-[clamp(2rem,8vmin,20rem)] lg:text-[clamp(2rem,10vmin,20rem)] xl:text-[clamp(2rem,12vmin,20rem)]">
+            <h1 className="m-0 max-w-full leading-tight tracking-tight lg:max-w-[12ch] text-[clamp(2rem,10vmin,15rem)] xl:text-[clamp(2rem,12vmin,20rem)]">
               Build advanced AI apps with our expertise.
             </h1>
           </div>
@@ -56,13 +56,18 @@ export function HeroSection({ heroImagePath, services, socialLinks }: HeroSectio
                 <li key={social.label}>
                   <a
                     href={social.href}
-                    className="inline-flex min-h-11 max-w-full items-center gap-2 text-base text-white/95 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white lg:text-xl lg:[text-orientation:mixed] lg:[writing-mode:vertical-rl]"
+                    className="group inline-flex min-h-11 max-w-full items-center gap-2 text-base text-white/95 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white lg:text-xl lg:[text-orientation:mixed] lg:[writing-mode:vertical-rl]"
                     aria-label={social.label}
                   >
-                    <span aria-hidden="true" className="text-base font-semibold leading-none lg:text-3xl">
+                    <span
+                      aria-hidden="true"
+                      className={`text-base font-semibold leading-none lg:text-3xl ${social.label === 'Github' ? 'lg:rotate-90' : ''}`}
+                    >
                       {social.label === 'Github' ? <GithubMark /> : social.symbol}
                     </span>
-                    <span className="max-w-full break-words">{social.label}</span>
+                    <span className="relative inline-block after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100">
+                      {social.label}
+                    </span>
                   </a>
                 </li>
               ))}
