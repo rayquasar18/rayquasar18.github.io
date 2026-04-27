@@ -32,7 +32,7 @@ export function HeroSection({ heroImagePath, services, socialLinks }: HeroSectio
                 <li key={service.label}>
                   <a
                     href={service.href}
-                    className="inline-flex min-h-11 items-center text-base leading-snug text-white/90 no-underline md:text-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                    className="inline-flex min-h-11 items-center text-base leading-snug text-white/90 no-underline 2xl:text-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                   >
                     ↳ {service.label}
                   </a>
