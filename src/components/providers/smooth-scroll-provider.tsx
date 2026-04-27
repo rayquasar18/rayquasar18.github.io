@@ -17,6 +17,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       autoRaf: false,
       smoothWheel: true,
       syncTouch: false,
+      allowNestedScroll: true,
       duration: 1.05,
       wheelMultiplier: 0.95,
       touchMultiplier: 1,

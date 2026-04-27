@@ -30,7 +30,7 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
       aria-label="Main menu"
     >
       <nav aria-label="Main navigation" className="container mx-auto h-full px-4 pb-8 pt-28 sm:px-6 lg:px-8">
-        <ul className="m-0 grid h-full list-none gap-5 overflow-y-auto p-0 pr-1 md:gap-6">
+        <ul data-lenis-prevent className="m-0 grid h-full list-none gap-5 overflow-y-auto p-0 pr-1 md:gap-6">
           {menuItems.map((item) => {
             const isActive = item.href === activeSection;
             const previewClass = previewClassByHref[item.href] ?? 'from-white/15 via-white/10 to-white/5';

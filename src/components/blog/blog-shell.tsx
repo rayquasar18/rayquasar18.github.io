@@ -30,7 +30,6 @@ export function BlogShell({ children, activeHref = '/blog' }: BlogShellProps) {
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    setIsHeaderVisible(true);
 
     return () => {
       document.body.style.overflow = previousOverflow;

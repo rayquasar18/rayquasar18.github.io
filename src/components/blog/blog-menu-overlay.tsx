@@ -30,7 +30,7 @@ export function BlogMenuOverlay({ isOpen, onClose, items, activeHref }: BlogMenu
       className={`fixed inset-0 z-40 bg-black transition-opacity duration-300 ease-out motion-reduce:transition-none ${isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
     >
       <nav aria-label="Blog navigation" className="container mx-auto h-full px-4 pb-8 pt-28 sm:px-6 lg:px-8">
-        <ul className="m-0 grid h-full list-none gap-5 overflow-y-auto p-0 pr-1 md:gap-6">
+        <ul data-lenis-prevent className="m-0 grid h-full list-none gap-5 overflow-y-auto p-0 pr-1 md:gap-6">
           {items.map((item) => {
             const isActive = item.href === activeHref;
             const previewClass = previewClassByHref[item.href] ?? 'from-white/15 via-white/10 to-white/5';

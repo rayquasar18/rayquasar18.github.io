@@ -61,7 +61,6 @@ export function HomePageClient({ content }: HomePageClientProps) {
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    setIsHeaderVisible(true);
     window.addEventListener('keydown', onKeyDown);
 
     return () => {
