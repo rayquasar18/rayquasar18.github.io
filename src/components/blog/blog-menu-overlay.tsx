@@ -43,8 +43,8 @@ export function BlogMenuOverlay({ isOpen, onClose, items, activeHref }: BlogMenu
     }
 
     const DEAD_ZONE = 0.08;
-    const BOOST_SPEED = 3;
-    const CRUISE_SPEED = 1.6;
+    const BOOST_SPEED = 6;
+    const CRUISE_SPEED = 3.2;
     const DECAY = 0.08;
 
     let targetSpeed = 0;
